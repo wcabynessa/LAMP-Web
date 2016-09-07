@@ -29,9 +29,11 @@
       </div>
       <div class="col-xs-6 row" >
         <ul class="nav navbar-nav pull-right col-xs-6 row">
-          <li class="active col-xs-3"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-          <li class="col-xs-3"><a href="#">Link</a></li>
-          <li class="dropdown">
+          <li class="active col-xs-3 text-center"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li class="col-xs-3 text-center"><a href="#">Link</a></li>
+          <?php
+          if (false) {
+          echo '<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your account <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Profile</a></li>
@@ -40,7 +42,12 @@
               <li role="separator" class="divider"></li>
               <li><a href="#">Log out</a></li>
             </ul>
-          </li>
+          </li>';
+          }
+          else {
+            echo '<li class="col-xs-3 text-center"><a href="#">Login</a></li>';
+          }
+          ?>
         </ul>
       </div>
       
