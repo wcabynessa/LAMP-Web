@@ -12,23 +12,30 @@ if ($query == 'init') {
 		echo "User table created successfully";
 	}
 } else if ($query == 'signup') {
-	$data = array(
-		'USERNAME' => get($_POST, 'username'),
-		'PASSWORD' => get($_POST, 'password'),
-		'FIRSTNAME' => get($_POST, 'firstname'),
-		'LASTNAME' => get($_POST, 'lastname'),
-	);
+	$result = signup($dbconn, $_POST);
 
-	echo json_encode(signup($dbconn, $data));
+	if ($result['STATUS'] == 'ERROR') {
+		echo json_encode($result);
+	} else {
+		echo json_encode(signin($dbconn, $_POST));
+	}
 } else if ($query == 'signin') {
-	$data = array(
-		'USERNAME' => get($_POST, 'username'),
-		'PASSWORD' => get($_POST, 'password')
-	);
+	$result = signin($dbconn, $_POST);
 
-	echo json_encode(signin($dbconn, $data));
+	if ($result['STATUS'] == 'OK') {
+		session_start();
+		$user = $result['DATA'];
+		$_SESSION['user'] = $user;
+	}
+
+	echo json_encode($result);
+
 } else if ($query == 'signout') {
-	echo json_encode(signout($dbconn, $data));
+	session_start();
+	session_unset();
+	session_destroy();
+	unset($_SESSION['user']);
+	echo json_encode(success_response());
 } else {
 	echo json_encode(error_response('Invalid query'));
 }

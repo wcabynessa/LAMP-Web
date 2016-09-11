@@ -10,18 +10,27 @@
 				<div class="col-xs-offset-4 col-xs-4">
 					<fieldset>
 						<legend> Sign in </legend>
-						<form id="signin-form">
+						<form id="signup-form">
 							<div class="form-group">
 								<input type="text" class="form-control" name="username" placeholder="Username" id="username">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="username" placeholder="First name" id="firstname">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="username" placeholder="Last name" id="lastname">
 							</div>
 							<div class="form-group">
 								<input type="password" class="form-control" name="password" placeholder="Password" id="password">
 							</div>
 							<div class="form-group">
+								<input type="password" class="form-control" name="confirm_password" placeholder="Confirm password" id="confirm_password">
+							</div>
+							<div class="form-group">
 								<button type="submit" class="btn btn-success"> Submit </button>
 							</div>
 							<div class="form-group">
-								<span class="error-text" id="signin-feedback"></span>
+								<span class="error-text" id="signup-feedback"></span>
 							</div>
 						</form>
 					</fieldset>

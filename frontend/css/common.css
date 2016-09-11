@@ -1,3 +1,11 @@
 .main-container {
 	margin-top: 50px;
 }
+
+
+/* ---------------------------- text ------------------- */
+.error-text {
+	color: #e74c3c;
+	font-weight: bold;
+	font-size: 17px;
+}

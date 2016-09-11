@@ -19,42 +19,39 @@ function create_user_table($dbconn) {
 
 function get_user_by_username($dbconn, $username) {
 	$result = pg_query_params($dbconn, "SELECT * FROM ACCOUNT WHERE USERNAME=$1", array($username));
-	if (!$result) return null;
+	if (!$result || (pg_num_rows($result) == 0)) return null;
 
 	$row = pg_fetch_row($result);
 
 	return array(
-		'ID' => $row[0],
-		'USERNAME' => $row[1],
-		'HASHED_PASSWORD' => $row[2],
-		'FIRSTNAME' => $row[3],
-		'LASTNAME' => $row[4],
-		'IS_ADMIN' => $row[5]
+		'id' => $row[0],
+		'username' => $row[1],
+		'hashed_password' => $row[2],
+		'firstname' => $row[3],
+		'lastname' => $row[4],
+		'is_admin' => $row[5]
 	);
 }
 
 function signin($dbconn, $data) {
-	$username = get($data, 'USERNAME');
-	$password = get($data, 'PASSWORD');
+	$username = get($data, 'username');
+	$password = get($data, 'password');
 
 	$user = get_user_by_username($dbconn, $username);
 	if (!$user) return error_response('Username does not exist');
 
-	if (password_verify($password, get($user, 'HASHED_PASSWORD'))) {
-		session_start();
-		$_SESSION['USERNAME'] = $username;
-
-		return success_response(session_id());
+	if (password_verify($password, get($user, 'hashed_password'))) {
+		return success_response($user);
 	} else {
 		return error_response('Username and password do not match');
 	}
 }
 
 function signup($dbconn, $data) {
-	$username = get($data, 'USERNAME');
-	$password = get($data, 'PASSWORD');
-	$firstname = get($data, 'FIRSTNAME');
-	$lastname = get($data, 'LASTNAME');
+	$username = get($data, 'username');
+	$password = get($data, 'password');
+	$firstname = get($data, 'firstname');
+	$lastname = get($data, 'lastname');
 
 	if (!$username) return error_response('INVALID USERNAME');
 	if (get_user_by_username($dbconn, $username)) return error_response('USERNAME ALREADY EXISTS');
@@ -66,13 +63,6 @@ function signup($dbconn, $data) {
 		array($username, $hashed_password, $firstname, $lastname));
 
 	if (!$result) return error_response('ERROR OCCURRED');
-	return success_response();
-}
-
-function signout($dbconn) {
-	unset($_SESSION['USERNAME']);
-	session_destroy();
-
 	return success_response();
 }
 ?>
