@@ -17,7 +17,16 @@ if ($query == 'init') {
 	if ($result['STATUS'] == 'ERROR') {
 		echo json_encode($result);
 	} else {
-		echo json_encode(signin($dbconn, $_POST));
+		// Sign in after sign up successfully
+		$result = signin($dbconn, $_POST);
+
+		if ($result['STATUS'] == 'OK') {
+			session_start();
+			$user = $result['DATA'];
+			$_SESSION['user'] = $user;
+		}
+
+		echo json_encode($result);
 	}
 } else if ($query == 'signin') {
 	$result = signin($dbconn, $_POST);
