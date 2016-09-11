@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<?php include 'header.php'?>
-		<section class=".container-fluid main-container">
+		<section class="container-fluid main-container">
 			<div class="row">
 				<div class="col-xs-offset-4 col-xs-4">
 					<fieldset>

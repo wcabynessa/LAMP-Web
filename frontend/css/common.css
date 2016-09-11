@@ -2,10 +2,39 @@
 	margin-top: 50px;
 }
 
+/*---------------------------- attribute --------------*/
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
 
 /* ---------------------------- text ------------------- */
 .error-text {
 	color: #e74c3c;
 	font-weight: bold;
 	font-size: 17px;
+}
+
+
+/*---------------------------- image --------------------*/
+.image-list-container {
+	overflow-y: hidden;
+	overflow-x: auto;
+	margin: 10px 0 10px 0;
+	white-space: nowrap;
+}
+
+.image-list-container .image {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+
+/*-------------------------- Project ---------------------*/
+.project-card {
+	padding: 10px;
+	border: 1px solid black;
 }

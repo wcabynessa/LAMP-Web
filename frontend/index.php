@@ -11,14 +11,19 @@
 		<a id="signin-link" href="/frontend/signin.php"> Signin here </a>
 		<br>
 		<a id="signup-link" href="/frontend/signup.php"> Signup here </a>
+		<br>
+		<a id="list-project-link" href="/frontend/list_project.php"> List my projects </a>
+		<br>
+		<a id="create-project-link" href="/frontend/create_project.php"> Create new projects </a>
 		<script>
 			$(document).ready(function () {
 				if (!HAS_LOGGED_IN) {
 					$('#signout-button').hide();
-					$('#signin-link').show();
+					$('#list-project-link').hide();
+					$('#create-project-link').hide();
 				} else {
-					$('#signout-button').show();
 					$('#signin-link').hide();
+					$('#signup-link').hide();
 				}
 			});
 		</script>
