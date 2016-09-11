@@ -7,9 +7,7 @@ Directory structure:
     - PHP: Contains PHP scripts  
 		   Each table has 1 scripts containing functions to query, update, create data in the table.  
 		   Query Handler script handles queries from front-end.  
-    - JS  
-    - CSS  
-    - HTML  
+    - Frontend:
   
   
 How to deploy:   
