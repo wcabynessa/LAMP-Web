@@ -6,8 +6,8 @@ For Linux users:
 How to deploy:   
     - Copy everything from git folder to [bitnami-lamp-address]/apache2/htdocs/  
     - Change password in 'php/connect_database.php'  
-    - `http://localhost:8080/php/user_query_handler.php?query=init`
-    - `http://localhost:8080/php/project_query_handler.php?query=init`
+    - `http://localhost:8080/php/user_query_handler.php?query=init`  
+    - `http://localhost:8080/php/project_query_handler.php?query=init`  
   
  
 Directory structure:  
