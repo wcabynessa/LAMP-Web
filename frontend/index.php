@@ -8,9 +8,6 @@
 	<body>
 		<?php include 'header.php'?>
 		<button type="submit" class="btn btn-success" id="signout-button"> Sign out </button>
-		<a id="signin-link" href="/frontend/signin.php"> Signin here </a>
-		<br>
-		<a id="signup-link" href="/frontend/signup.php"> Signup here </a>
 		<br>
 		<a id="list-project-link" href="/frontend/list_project.php"> List my projects </a>
 		<br>
@@ -18,12 +15,12 @@
 		<script>
 			$(document).ready(function () {
 				if (!HAS_LOGGED_IN) {
+					$('#account-dropdown').hide();
 					$('#signout-button').hide();
 					$('#list-project-link').hide();
 					$('#create-project-link').hide();
 				} else {
-					$('#signin-link').hide();
-					$('#signup-link').hide();
+					$('#login-dropdown').hide();
 				}
 			});
 		</script>

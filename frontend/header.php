@@ -7,7 +7,7 @@
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand pull-right" href="#">Brand</a>
+		<a class="navbar-brand pull-right" href="/">Home</a>
 	  </div>
 	  <div class="col-xs-4 row">
 		<form class="navbar-form col-xs-12" role="search" style="padding: 0; width: 100%;">
@@ -19,25 +19,25 @@
 	  </div>
 	  <div class="col-xs-6 row" >
 		<ul class="nav navbar-nav pull-right col-xs-6 row">
-		  <li class="active col-xs-3 text-center"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-		  <li class="col-xs-3 text-center"><a href="#">Link</a></li>
-<?php
-if (false) {
-	echo '<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your account <span class="caret"></span></a>
-		<ul class="dropdown-menu">
-		<li><a href="#">Profile</a></li>
-		<li><a href="#">Something</a></li>
-		<li><a href="#">Something else here</a></li>
-		<li role="separator" class="divider"></li>
-		<li><a href="#">Log out</a></li>
-		</ul>
-		</li>';
-}
-else {
-	echo '<li class="col-xs-3 text-center"><a href="#">Login</a></li>';
-}
-?>
+		  <li class="nav navbar-nav col-xs-4 text-center"><a href="#">Showcase<span class="sr-only">(current)</span></a></li>
+		  <li class="nav navbar-nav col-xs-4 text-center"><a href="#">My projects</a></li>
+			<li class="dropdown" id="account-dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your account <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Something</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Log out</a></li>
+					</ul>
+			</li>
+			<li class="dropdown" id="login-dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a id="signin-link" href="/frontend/signin.php"> Signin here </a></li>
+						<li><a id="signup-link" href="/frontend/signup.php"> Signup here </a></li>
+					</ul>
+			</li>
 		</ul>
 	  </div>
 
