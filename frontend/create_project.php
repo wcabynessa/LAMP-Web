@@ -16,6 +16,10 @@
 								<input type="text" class="form-control" name="title" placeholder="Project title" id="title">
 							</div>
 							<div class="form-group">
+								<label for="target_amount"> Target amount: </label>
+								<input type="number" class="form-control" name="target_amount" placeholder="Target amount" id="target-amount"> </input>
+							</div>
+							<div class="form-group">
 								<label for="description"> Description: </label>
 								<textarea type="text" class="form-control" name="description" placeholder="Description" id="description"> </textarea>
 							</div>

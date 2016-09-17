@@ -12,6 +12,7 @@ $(document).ready(function () {
 
 		var title = $('#title').val();
 		var description = $('#description').val();
+		var target_amount = $('#target-amount').val();
 
 		$.ajax({
 			url: '/php/project_query_handler.php',
@@ -21,6 +22,7 @@ $(document).ready(function () {
 				title: title,
 				owner: USERNAME,
 				description: description,
+				target_amount: target_amount,
 				images: JSON.stringify(imageList)
 			}
 		}).done(function (data) {
