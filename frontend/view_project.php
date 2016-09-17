@@ -3,6 +3,7 @@
 	<head>
 		<?php include 'html-header.php'?>
 		<?php include 'authentication.php'?>
+		<?php include 'url_param_extractor.php'?>
 	</head>
 	<body>
 		<?php include 'header.php'?>
@@ -16,7 +17,7 @@
 		<script src="/frontend/js/template.js"> </script>
 		<script src="/frontend/js/project.js"> </script>
 		<script>
-			viewProjectsByUsername(USERNAME);
+			viewProjectById(ID);
 		</script>
 	</body>
 </html>

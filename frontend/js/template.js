@@ -1,4 +1,4 @@
-var getImageContainerHtml = function(imageUrl, floatValue='float-left', height=100) {
+var getImageTemplate = function(imageUrl, floatValue='float-left', height=100) {
 	var html = "";
 
 	html += "<div class=\"image\" class=\"" + floatValue + "\">";
@@ -8,36 +8,50 @@ var getImageContainerHtml = function(imageUrl, floatValue='float-left', height=1
 	return html;
 }
 
-var getImageListContainerHtml = function(imageUrlList, floatValue='float-left', height=100) {
+var getImageListTemplate = function(imageUrlList, floatValue='float-left', height=100) {
 	var html = "";
 
 	html += "<div class=\"image-list-container\" style=\"height:" + height + "px\">";
 	imageUrlList.forEach(function (imageUrl) {
-		html += getImageContainerHtml(imageUrl, floatValue, height);
+		html += getImageTemplate(imageUrl, floatValue, height);
 	});
 	html += "</div>";
 
 	return html;
 }
 
-var getProjectContainer = function(project) {
+var getViewProjectTemplate = function(project) {
 	var html = "";
 
-	html += "<div class=\"project-card\">";
+	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
 	html += "	<h3> " + project.title + "</h3>";
+	html += "	<h6> Goal: " + project.target_amount + "&nbsp;&nbsp;Funded: " + project.funded_amount + "</h6>";
 	html += "	<div> " + project.description + "</div>";
-	html += "	<div> " + getImageListContainerHtml(project.images, 'float-left', 70) + "</div>";
+	html += "	<div> " + getImageListTemplate(project.images, 'float-left', 70) + "</div>";
 	html += "</div>";
 
 	return html;
 }
 
-var getProjectListContainerHtml = function(projectList) {
+var getProjectCardTemplate = function(project) {
+	var html = "";
+
+	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
+	html += "	<h3> " + project.title + "</h3>";
+	html += "	<h6> Target amount: " + project.target_amount + "    Funded: " + project.funded_amount + "</h6>";
+	html += "	<div> " + project.description + "</div>";
+	html += "	<div> " + getImageListTemplate(project.images, 'float-left', 70) + "</div>";
+	html += "</div>";
+
+	return html;
+}
+
+var getProjectListTemplate = function(projectList) {
 	var html = "";
 
 	html += "<div>";
 	projectList.forEach(function (project) {
-		html += getProjectContainer(project);
+		html += getProjectCardTemplate(project);
 	});
 	html += "</div>";
 

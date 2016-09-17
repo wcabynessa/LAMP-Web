@@ -13,7 +13,7 @@ if ($query == 'init') {
 	}
 } else if ($query == 'add') {
 	echo json_encode(add_project($dbconn, $_POST));
-} else if ($query == 'get') {
+} else if ($query == 'view') {
 	$projectid = get($_GET, 'projectid');
 	echo json_encode(get_project_by_id($dbconn, $projectid));
 } else if ($query == 'list') {
