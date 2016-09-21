@@ -81,5 +81,16 @@
 
 .project-card-funded-money {
 	color: #606b6c;
+	padding: 0;
 	font-size: 27px;
+}
+
+.project-card-category {
+	padding: 12px 0 0 0;
+	text-align: right;
+}
+
+.project-card-category a {
+	color: #606b6c;
+	font-size: 16px;
 }

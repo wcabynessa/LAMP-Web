@@ -68,8 +68,11 @@ var getProjectCardTemplate = function(project) {
 	html += "		<div class=\"progress project-card-progress\">";
 	html += "			<div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"" + project.progress + "\" style=\"width:" + project.progress + "%;\"> </div>";
 	html += "		</div>";
-	html += "		<div class=\"project-card-funded-money\">";
+	html += "		<div class=\"col-xs-6 project-card-funded-money\">";
 	html += "			$ " + project.funded_amount + " funded";
+	html += "		</div>";
+	html += "		<div class=\"col-xs-6 project-card-category\">";
+	html += "			<a href=\"\"> view other " + project.category + " projects </a>";
 	html += "		</div>";
 	//html += "		<div> " + getImageListTemplate(project.images, {floatValue:'float-left',height:'70px'}) + "</div>";
 	html += "	</div>";

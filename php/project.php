@@ -8,6 +8,7 @@ function create_project_table($dbconn) {
 	$query .= "OWNER VARCHAR(32) REFERENCES ACCOUNT(USERNAME),";
 	$query .= "DESCRIPTION VARCHAR(4096),";
 	$query .= "IMAGES VARCHAR(4096),";
+	$query .= "CATEGORY VARCHAR(64) DEFAULT 'OTHERS',";
 	$query .= "FUNDED_AMOUNT INTEGER DEFAULT 0,";
 	$query .= "TARGET_AMOUNT INTEGER NOT NULL,";
 	$query .= "CREATED_TIME DATE NOT NULL DEFAULT clock_timestamp(),";
@@ -24,9 +25,10 @@ function get_project_from_raw_data($data) {
 		'description' => $data[3],
 		// images is an array stored in json format
 		'images' => json_decode($data[4]),
-		'funded_amount' => $data[5],
-		'target_amount' => $data[6],
-		'created_time' => $data[7],
+		'category' => $data[5],
+		'funded_amount' => $data[6],
+		'target_amount' => $data[7],
+		'created_time' => $data[8],
 	);
 }
 
@@ -63,10 +65,11 @@ function add_project($dbconn, $data) {
 	$description = get($data, 'description');
 	$images = get($data, 'images');
 	$target_amount = get($data, 'target_amount');
+	$category = get($data, 'category');
 
 	$result = pg_query_params($dbconn, 
-		"INSERT INTO PROJECT(TITLE, OWNER, DESCRIPTION, IMAGES, TARGET_AMOUNT) VALUES($1, $2, $3, $4, $5)",
-		array($title, $owner, $description, $images, $target_amount));
+		"INSERT INTO PROJECT(TITLE, OWNER, DESCRIPTION, IMAGES, TARGET_AMOUNT, CATEGORY) VALUES($1, $2, $3, $4, $5, $6)",
+		array($title, $owner, $description, $images, $target_amount, $category));
 
 	if (!$result) return error_response('ERROR_OCCURRED');
 	return success_response();
