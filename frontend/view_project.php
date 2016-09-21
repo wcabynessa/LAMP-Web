@@ -17,7 +17,7 @@
 		<script src="/frontend/js/template.js"> </script>
 		<script src="/frontend/js/project.js"> </script>
 		<script>
-			viewProjectById(ID);
+			viewProjectById(URL_PARAMS.id);
 		</script>
 	</body>
 </html>

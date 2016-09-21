@@ -17,8 +17,7 @@ if ($query == 'init') {
 	$projectid = get($_GET, 'projectid');
 	echo json_encode(get_project_by_id($dbconn, $projectid));
 } else if ($query == 'list') {
-	$username= get($_GET, 'username');
-	echo json_encode(get_projects_by_owner($dbconn, $username));
+	echo json_encode(list_projects($dbconn, $_GET));
 } else if ($query == 'delete') {
 	$projectid= get($_GET, 'projectid');
 	echo json_encode(delete_project_by_id($dbconn, $projectid));

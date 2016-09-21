@@ -2,6 +2,55 @@
 	margin-top: 50px;
 }
 
+/*--------------------- Override bootstrap elements --*/
+select.form-control {
+	background-color: #ecf0f1;
+	border: none;
+	border-top: 2px solid #d3dcde;
+	border-radius: 0;
+	outline: 0;
+}
+
+select.form-control:active{
+	border: none;
+	border-top: 2px solid #d3dcde;
+	box-shadow: none;
+}
+
+select.form-control:focus{
+	border: none;
+	border-top: 2px solid #d3dcde;
+	box-shadow: none;
+}
+
+input.form-control {
+	border: none;
+	border-radius: 0;
+	height: 40px;
+	background-color: #ecf0f1;
+}
+
+input.form-control:focus {
+	outline: 0;
+	box-shadow: none;
+}
+
+textarea.form-control {
+	border: none;
+	border-radius: 0;
+	background-color: #ecf0f1;
+}
+
+.input-group input.form-control {
+	height: 32px;
+}
+
+button.btn {
+	border-radius: 0;
+	font-size: 14px;
+	padding: 5px 15px;
+}
+
 /*---------------------------- attribute --------------*/
 .float-left {
 	float: left;
@@ -21,6 +70,10 @@
 
 .no-margin {
 	margin: 0 !important;
+}
+
+.align-center-div {
+	margin: auto;
 }
 
 /* ---------------------------- text ------------------- */
@@ -55,7 +108,8 @@
 	color: #3d3d5c;
 	padding: 20px;
 	margin-bottom: 50px;
-	border: 1px solid #ddd;
+	border: 1px solid #f0f3f4;
+	border-top: 5px solid #2ecc71;
 }
 
 .project-card-title {
@@ -93,4 +147,41 @@
 .project-card-category a {
 	color: #606b6c;
 	font-size: 16px;
+}
+
+/*-------------------------------- Project filter ---------------*/
+.project-filter-container {
+	position: fixed;
+	top: 110px;
+	left: 0;
+	z-index: 10;
+	width: 100vw;
+	pointer-events: none;
+}
+
+.project-filter-bar {
+	height: 2000px;
+	background-color: white;
+	border: 1px solid #f0f3f4;
+	border-top: 5px solid #2ecc71;
+	padding: 25px;
+	pointer-events: auto;
+}
+
+.project-filter-bar-title {
+	color: #090d10;
+	font-weight: bold;
+	font-size: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e2e8e9;
+}
+
+.project-filter-form {
+	margin-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e2e8e9;
+}
+
+.project-filter-button {
+	margin-top: 20px;
 }

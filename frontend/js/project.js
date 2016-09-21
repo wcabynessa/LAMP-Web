@@ -41,7 +41,6 @@ $('#add-image-button').on('click', function (e) {
 });
 
 function preprocessProjectData(project) {
-	console.log(project);
 	if (project.images && project.images.length) {
 		project.main_image = project.images[0];
 	} else {
@@ -66,14 +65,13 @@ function donateProject(project, money) {
 	});
 }
 
-function viewProjectsByUsername(username) {
+function viewProjects(args = {}) {
+	args.query = 'list';
+
 	$.ajax({
 		url: '/php/project_query_handler.php',
 		method: 'GET',
-		data: {
-			query: 'list',
-			username: username
-		}
+		data: args
 	}).done(function (data) {
 		var projectList = JSON.parse(data);
 		projectList.forEach(function (project, index) {

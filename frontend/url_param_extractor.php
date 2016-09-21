@@ -1,7 +1,9 @@
 <script>
 <?php
+echo "var URL_PARAMS = {";
 foreach($_GET as $key => $value) {
-	echo "var " . strtoupper($key) . " = " . $value . ";\n";
+	echo "	'". $key . "': '" . $value. "',";
 }
+echo "};";
 ?>
 </script>
