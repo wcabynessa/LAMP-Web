@@ -34,9 +34,20 @@ $('#add-image-button').on('click', function (e) {
 	var imageUrl = $('#image-url').val();
 	imageList.push(imageUrl);
 
-	$('#image-container').html(getImageListTemplate(imageList));
+	$('#image-container').html(getImageListTemplate(imageList, {height: '80px'}));
 	$('#image-url').val('');
 });
+
+function preprocessProjectData(project) {
+	if (project.images && project.images.length) {
+		project.main_image = project.images[0];
+	} else {
+		project.main_image = 'http://www.mosaicdevelopmentfl.com/Common/images/jquery/galleria/image-not-found.png';
+	}
+	project.progress = Math.min(project.funded_amount * 1.0 / project.target_amount * 100, 100.0);
+	project.progress = 70;
+	return project;
+}
 
 function donateProject(project, money) {
 	$.ajax({
@@ -63,6 +74,9 @@ function viewProjectsByUsername(username) {
 		}
 	}).done(function (data) {
 		var projectList = JSON.parse(data);
+		projectList.forEach(function (project, index) {
+			projectList[index] = preprocessProjectData(project);
+		});
 		$('#project-container').html(getProjectListTemplate(projectList));
 
 		// Bind event handler to projects
@@ -84,7 +98,7 @@ function viewProjectById(projectId) {
 			projectid: projectId
 		}
 	}).done(function (data) {
-		var project = JSON.parse(data);
+		var project = preprocessProjectData(JSON.parse(data));
 		$('#project-container').html(getViewProjectTemplate(project));
 
 		// Bind event handler to projects
