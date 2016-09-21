@@ -36,23 +36,23 @@ function get_transactions_by_username($dbconn, $username) {
 }
 
 function create_transaction($dbconn, $data) {
-	$donor = get($data, 'donor');
+	$username = get($data, 'username');
 	$project_id = get($data, 'project_id');
-	$amount = get($data, 'amount');
+	$amount = get($data, 'amount', 0);
 
 	$result = pg_query_params($dbconn, 
 		"INSERT INTO TRANSACTION(DONOR, PROJECT_ID, AMOUNT) VALUES($1, $2, $3)",
-		array($donor, $project_id, $amount));
+		array($username, $project_id, $amount));
 
 	if (!$result) return error_response('ERROR_OCCURRED');
 
 	// Update funded amount of project
-	$project = get_project_by_id($project_id);
+	$project = get_project_by_id($dbconn, $project_id);
 	$funded_amount = $project['funded_amount'];
 
 	$result = pg_query_params($dbconn, 
 		"UPDATE PROJECT SET FUNDED_AMOUNT=$1 WHERE ID=$2",
-		array($funded_amount, $project_id));
+		array($funded_amount + $amount, $project_id));
 
 	if (!$result) return error_response('ERROR_OCCURRED');
 

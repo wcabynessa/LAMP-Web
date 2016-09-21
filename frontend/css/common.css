@@ -11,6 +11,10 @@
 	float: right;
 }
 
+.clickable {
+	cursor: pointer;
+}
+
 /* ---------------------------- text ------------------- */
 .error-text {
 	color: #e74c3c;

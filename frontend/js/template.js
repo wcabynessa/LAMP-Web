@@ -24,10 +24,16 @@ var getViewProjectTemplate = function(project) {
 	var html = "";
 
 	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
-	html += "	<h3> " + project.title + "</h3>";
+	html += "	<h3 class=\"project-title clickable\"> " + project.title + "</h3>";
 	html += "	<h6> Goal: " + project.target_amount + "&nbsp;&nbsp;Funded: " + project.funded_amount + "</h6>";
 	html += "	<div> " + project.description + "</div>";
 	html += "	<div> " + getImageListTemplate(project.images, 'float-left', 70) + "</div>";
+	html += "	<div class=\"input-group\">";
+	html += "		<input class=\"money-input form-control\" type=\"number\"/>";
+	html += "		<span class=\"input-group-btn\">";
+	html += "			<button class=\"donate-button btn btn-default\" type=\"button\">Donate</button>";
+	html += "		</span>";
+	html += "	</div>";
 	html += "</div>";
 
 	return html;
@@ -37,7 +43,7 @@ var getProjectCardTemplate = function(project) {
 	var html = "";
 
 	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
-	html += "	<h3> " + project.title + "</h3>";
+	html += "	<h3 class=\"project-title clickable\"> " + project.title + "</h3>";
 	html += "	<h6> Target amount: " + project.target_amount + "    Funded: " + project.funded_amount + "</h6>";
 	html += "	<div> " + project.description + "</div>";
 	html += "	<div> " + getImageListTemplate(project.images, 'float-left', 70) + "</div>";

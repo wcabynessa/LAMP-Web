@@ -31,7 +31,7 @@ function get_project_from_raw_data($data) {
 }
 
 function get_project_by_id($dbconn, $projectid) {
-	$result = pg_query_params($dbconn, "SELECT * FROM PROJECT WHERE ID=$1", array($projectid));
+	$result = pg_query_params($dbconn, "SELECT * FROM PROJECT WHERE ID=$1;", array($projectid));
 	if (!$result || (pg_num_rows($result) == 0)) return null;
 
 	$row = pg_fetch_row($result);

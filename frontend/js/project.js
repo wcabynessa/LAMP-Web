@@ -38,10 +38,18 @@ $('#add-image-button').on('click', function (e) {
 	$('#image-url').val('');
 });
 
-function projectCardFunctionBinding(project) {
-	var htmlId = '#project-card-' + project.id;
-	$(htmlId).on('click', function () {
-		window.location.href = '/frontend/view_project.php?id=' + project.id;
+function donateProject(project, money) {
+	$.ajax({
+		url: '/php/transaction_query_handler.php',
+		method: 'POST',
+		data: {
+			query: 'create',
+			username: USERNAME,
+			project_id: project.id,
+			amount: money
+		}
+	}).done(function (data) {
+		location.reload();
 	});
 }
 
@@ -57,8 +65,12 @@ function viewProjectsByUsername(username) {
 		var projectList = JSON.parse(data);
 		$('#project-container').html(getProjectListTemplate(projectList));
 
+		// Bind event handler to projects
 		projectList.forEach(function (project) {
-			projectCardFunctionBinding(project);
+			var htmlSelector = "#project-card-" + project.id + " .project-title";
+			$(htmlSelector).on('click', function () {
+				window.location.href = "/frontend/view_project.php?id=" + project.id;
+			});
 		});
 	});
 };
@@ -74,5 +86,16 @@ function viewProjectById(projectId) {
 	}).done(function (data) {
 		var project = JSON.parse(data);
 		$('#project-container').html(getViewProjectTemplate(project));
+
+		// Bind event handler to projects
+		var donateButtonSelector = "#project-card-" + project.id + " .donate-button";
+		$(donateButtonSelector).on('click', function (e) {
+			e.preventDefault();
+
+			var moneyInputSelect = "#project-card-" + project.id + " .money-input";
+			var money = $(moneyInputSelect).val();
+
+			donateProject(project, money);
+		});
 	});
 }
