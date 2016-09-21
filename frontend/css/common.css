@@ -11,6 +11,18 @@
 	float: right;
 }
 
+.clickable {
+	cursor: pointer;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
 /* ---------------------------- text ------------------- */
 .error-text {
 	color: #e74c3c;
@@ -28,13 +40,57 @@
 }
 
 .image-list-container .image {
+	overflow: hidden;
 	display: inline-block;
 	margin-right: 10px;
 }
 
+.image {
+	overflow: hidden;
+}
 
-/*-------------------------- Project ---------------------*/
+
+/*-------------------------- Project view---------------------*/
 .project-card {
-	padding: 10px;
-	border: 1px solid black;
+	color: #3d3d5c;
+	padding: 20px;
+	margin-bottom: 50px;
+	border: 1px solid #ddd;
+}
+
+.project-card-title {
+	color: #090d10;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.project-card-owner {
+	margin: 5px 0 5px 0;
+}
+
+.project-card-description {
+	height: 10em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.project-card-progress {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.project-card-funded-money {
+	color: #606b6c;
+	padding: 0;
+	font-size: 27px;
+}
+
+.project-card-category {
+	padding: 12px 0 0 0;
+	text-align: right;
+}
+
+.project-card-category a {
+	color: #606b6c;
+	font-size: 16px;
 }

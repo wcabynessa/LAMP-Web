@@ -1,19 +1,27 @@
-var getImageTemplate = function(imageUrl, floatValue='float-left', height=100) {
+var getImageTemplate = function(imageUrl, params = {}) {
+	var floatValue = params.floatValue || 'float-left';
+	var width = params.width;
+	var height = params.height;
+	var outerWidth = params.outerWidth;
+	var outerHeight = params.outerHeight;
 	var html = "";
 
-	html += "<div class=\"image\" class=\"" + floatValue + "\">";
-	html += "	<img src=\"" + imageUrl + "\" height=\"" + height + "px\"> </img>";
+	html += "<div class=\"image " + floatValue + "\" style=\"width:" + outerWidth + ";height:" + outerHeight + ";\">";
+	html += "	<img src=\"" + imageUrl + "\" width=\"" + width + "\" height=\"" + height + "\"> </img>";
 	html += "</div>";
 
 	return html;
 }
 
-var getImageListTemplate = function(imageUrlList, floatValue='float-left', height=100) {
+var getImageListTemplate = function(imageUrlList, params = {}) {
+	var floatValue = params.floatValue || 'float-left';
+	var width = params.width;
+	var height = params.height;
 	var html = "";
 
-	html += "<div class=\"image-list-container\" style=\"height:" + height + "px\">";
+	html += "<div class=\"image-list-container\" style=\"width:" + width + ";height:" + height + "\">";
 	imageUrlList.forEach(function (imageUrl) {
-		html += getImageTemplate(imageUrl, floatValue, height);
+		html += getImageTemplate(imageUrl, params);
 	});
 	html += "</div>";
 
@@ -24,23 +32,50 @@ var getViewProjectTemplate = function(project) {
 	var html = "";
 
 	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
-	html += "	<h3> " + project.title + "</h3>";
+	html += "	<h3 class=\"project-title clickable\"> " + project.title + "</h3>";
 	html += "	<h6> Goal: " + project.target_amount + "&nbsp;&nbsp;Funded: " + project.funded_amount + "</h6>";
 	html += "	<div> " + project.description + "</div>";
-	html += "	<div> " + getImageListTemplate(project.images, 'float-left', 70) + "</div>";
+	html += "	<div> " + getImageListTemplate(project.images, {floatValue:'float-left',height:'70px'}) + "</div>";
+	html += "	<div class=\"input-group\">";
+	html += "		<input class=\"money-input form-control\" type=\"number\"/>";
+	html += "		<span class=\"input-group-btn\">";
+	html += "			<button class=\"donate-button btn btn-default\" type=\"button\">Donate</button>";
+	html += "		</span>";
+	html += "	</div>";
 	html += "</div>";
 
 	return html;
 }
 
 var getProjectCardTemplate = function(project) {
+	var mainImageConfig = {
+		floatValue: 'float-left',
+		outerHeight: '300px',
+		outerWidth: '100%',
+		height: '100%'
+	}
+
 	var html = "";
 
-	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
-	html += "	<h3> " + project.title + "</h3>";
-	html += "	<h6> Target amount: " + project.target_amount + "    Funded: " + project.funded_amount + "</h6>";
-	html += "	<div> " + project.description + "</div>";
-	html += "	<div> " + getImageListTemplate(project.images, 'float-left', 70) + "</div>";
+	html += "<div class=\"row project-card\" id=\"project-card-" + project.id +"\">";
+	html += "	<div class=\"col-xs-5 no-padding\">";
+	html += "		" + getImageTemplate(project.main_image, mainImageConfig);
+	html += "	</div>";
+	html += "	<div class=\"col-xs-7\">"
+	html += "		<div class=\"project-card-title clickable\"> " + project.title + "</div>";
+	html += "		<div class=\"project-card-owner\"> by " + project.owner + "</div>";
+	html += "		<div class=\"project-card-description\"> " + project.description + "</div>";
+	html += "		<div class=\"progress project-card-progress\">";
+	html += "			<div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"" + project.progress + "\" style=\"width:" + project.progress + "%;\"> </div>";
+	html += "		</div>";
+	html += "		<div class=\"col-xs-6 project-card-funded-money\">";
+	html += "			$ " + project.funded_amount + " funded";
+	html += "		</div>";
+	html += "		<div class=\"col-xs-6 project-card-category\">";
+	html += "			<a href=\"\"> view other " + project.category + " projects </a>";
+	html += "		</div>";
+	//html += "		<div> " + getImageListTemplate(project.images, {floatValue:'float-left',height:'70px'}) + "</div>";
+	html += "	</div>";
 	html += "</div>";
 
 	return html;

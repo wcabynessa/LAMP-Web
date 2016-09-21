@@ -9,7 +9,7 @@
 		<?php include 'header.php'?>
 		<section class="container-fluid main-container">
 			<div class="row">
-				<div id="project-container">
+				<div id="project-container" class="col-xs-6 col-offset-xs-3">
 				</div>
 			</div>
 		</section>

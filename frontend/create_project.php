@@ -20,6 +20,26 @@
 								<input type="number" class="form-control" name="target_amount" placeholder="Target amount" id="target-amount"> </input>
 							</div>
 							<div class="form-group">
+								<label for="category"> Select category: </label>
+								<select class="form-control" id="category">
+									<option> Art </option>
+									<option> Comics </option>
+									<option> Crafts </option>
+									<option> Dance </option>
+									<option> Design </option>
+									<option> Fashion </option>
+									<option> Film & Video </option>
+									<option> Food </option>
+									<option> Games </option>
+									<option> Journalism </option>
+									<option> Music </option>
+									<option> Photography </option>
+									<option> Publishing </option>
+									<option> Technology </option>
+									<option> Theater </option>
+									<option> Others </option>
+								</select>
+							<div class="form-group">
 								<label for="description"> Description: </label>
 								<textarea type="text" class="form-control" name="description" placeholder="Description" id="description"> </textarea>
 							</div>
