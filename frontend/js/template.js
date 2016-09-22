@@ -28,6 +28,19 @@ var getImageListTemplate = function(imageUrlList, params = {}) {
 	return html;
 }
 
+var getDonationListTemplate = function (donations) {
+	var html= "";
+
+	donations.forEach(function (donation) {
+		html += "<div class=\"project-view-donation-card\">";
+		html += "	<h5> " + donation.donor + " </h5>";
+		html += "	<div> " + donation.amount + " $ </div>";
+		html += "</div>";
+	});
+
+	return html;
+}
+
 var getViewProjectTemplate = function(project) {
 	var html = "";
 

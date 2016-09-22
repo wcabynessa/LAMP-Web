@@ -67,6 +67,7 @@ function donateProject(project, money) {
 
 function viewProjects(args = {}) {
 	args.query = 'list';
+	if (args.category == 'All') args.category = '';
 
 	$.ajax({
 		url: '/php/project_query_handler.php',
@@ -89,6 +90,20 @@ function viewProjects(args = {}) {
 	});
 };
 
+function getDonationByProjectId(projectId, callback) {
+	$.ajax({
+		url: '/php/transaction_query_handler.php',
+		method: 'GET',
+		data: {
+			query: 'recent',
+			project_id: projectId
+		}
+	}).done(function (data) {
+		console.log(data);
+		callback(JSON.parse(data));
+	});
+}
+
 function viewProjectById(projectId) {
 	$.ajax({
 		url: '/php/project_query_handler.php',
@@ -99,7 +114,18 @@ function viewProjectById(projectId) {
 		}
 	}).done(function (data) {
 		var project = preprocessProjectData(JSON.parse(data));
-		$('#project-container').html(getViewProjectTemplate(project));
+
+		$(".project-view-money").text('$ ' + project.funded_amount + ' of $ ' + project.target_amount + ' goal');
+
+		$(".project-view-progress .progress-bar").attr("aria-valuenow", project.progress);
+		$(".project-view-progress .progress-bar").css("width", project.progress + "%");
+		$(".project-view-image img").attr("src", project.main_image);
+		$(".project-view-description .text").text(project.description);
+
+		getDonationByProjectId(project.id, function (data) {
+			var html = getDonationListTemplate(data);
+			$(".project-view-donations-container").html(html);
+		});
 
 		// Bind event handler to projects
 		var donateButtonSelector = "#project-card-" + project.id + " .donate-button";

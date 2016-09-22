@@ -1,5 +1,12 @@
+body {
+	background-color: #f0f3f4;
+}
+
+section {
+	background-color: #f0f3f4;
+}
+
 .main-container {
-	margin-top: 50px;
 }
 
 .home-container {
@@ -7,6 +14,10 @@
 }
 
 /*--------------------- Override bootstrap elements --*/
+nav.navbar {
+	margin-bottom: 0;
+}
+
 select.form-control {
 	background-color: #ecf0f1;
 	border: none;
@@ -114,6 +125,7 @@ button.btn {
 	margin-bottom: 50px;
 	border: 1px solid #f0f3f4;
 	border-top: 5px solid #2ecc71;
+	background-color: white;
 }
 
 .project-card-title {
@@ -231,4 +243,93 @@ button.btn {
 	text-align: center;
 	color: white;
 	font-size: 75px;
+}
+
+/*--------------------------------- View project page ------------------*/
+.project-view-container {
+	width: 100%;
+	height: 1000px;
+}
+
+.project-view-image {
+	width: 69%;
+	height: 70vh;
+	overflow: hidden;
+	float: left;
+	display: inline-block;
+}
+
+.project-view-info {
+	width: 30%;
+	height: 70vh;
+	float: right;
+	padding: 15px;
+	display: inline-block;
+	border-top: 5px solid #2ecc71;
+	background-color: white;
+}
+
+.project-view-money {
+	color: #3d3d5c;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.project-view-progress {
+	margin-top: 15px;
+}
+
+.project-view-donate input {
+	height: 48px;
+}
+
+.project-view-donate button {
+	background-color: #2ecc71;
+	border: none;
+	font-size: 20px;
+	height: 48px;
+	width: 100%;
+}
+
+.project-view-donate-panel {
+	margin-top: 20px;
+}
+
+.project-view-donate-panel button {
+	background-color: #2ecc71;
+	border: 1px solid #2ecc71;
+}
+
+.project-view-description {
+	background-color: white;
+	float: left;
+	margin-top: 20px;
+	padding: 15px;
+	width: 69%;
+}
+
+.project-view-donations {
+	margin-top: 20px;
+	width: 30%;
+	float: right;
+}
+
+.project-view-donations-label {
+	height: 48px;
+	width: 100%;
+	padding-top: 10px;
+	font-size: 20px;
+	background-color: #2ecc71;
+	text-align: center;
+	color: white;
+}
+
+.project-view-donations-container {
+	margin-top: 15px;
+	background-color: white;
+}
+
+.project-view-donation-card {
+	padding: 0 10px;
+	margin-bottom: 10px;
 }

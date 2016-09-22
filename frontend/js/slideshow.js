@@ -39,6 +39,10 @@ $(document).ready(function () {
 
 	var categoryCount = {};
 
+	$(".slideshow-center-text").on('click', function () {
+		window.location.href = '/frontend/list_project.php?category=All';
+	});
+
 	function getProjectCountByCategory() {
 		$.ajax({
 			url: '/php/project_query_handler.php?query=count',
