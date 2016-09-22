@@ -8,11 +8,16 @@
 	<body>
 		<?php include 'header.php'?>
 		<section class="container-fluid main-container">
+			<div class="row">
+				<div id="projects-container"> </div>
+				<div id="transactions-container"> </div>
+			</div>
 		</section>
 
 		<script src="/frontend/js/template.js"> </script>
+		<script src="/frontend/js/profile.js"> </script>
 		<script>
-			viewProjectById(URL_PARAMS.id);
+			initProfilePage(USER);
 		</script>
 	</body>
 </html>

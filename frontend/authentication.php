@@ -18,9 +18,10 @@ if ($_SESSION['user']) {
 
 <script>
 var USER = {
-	'username': '<?php echo get($user, 'username', ''); ?>';
-	'firstname': '<?php echo get($user, 'firstname', ''); ?>';
-	'lastname': '<?php echo get($user, 'lastname', ''); ?>';
+	'username': '<?php echo get($user, 'username', ''); ?>',
+	'firstname': '<?php echo get($user, 'firstname', ''); ?>',
+	'lastname': '<?php echo get($user, 'lastname', ''); ?>',
+	'isAdmin': '<?php echo (get($user, 'is_admin') ? 1 : 0); ?>',
 };
 var HAS_LOGGED_IN = <?php echo $has_logged_in; ?>;
 </script>

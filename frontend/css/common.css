@@ -14,6 +14,10 @@ section {
 }
 
 /*--------------------- Override bootstrap elements --*/
+table.table {
+	background-color: white;
+}
+
 nav.navbar {
 	margin-bottom: 0;
 }
@@ -89,6 +93,13 @@ button.btn {
 
 .align-center-div {
 	margin: auto;
+}
+
+.truncate {
+	width: 300px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* ---------------------------- text ------------------- */

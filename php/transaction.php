@@ -27,7 +27,11 @@ function get_transaction_from_raw_data($data) {
 }
 
 function get_transactions_by_username($dbconn, $username) {
-	$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE DONOR=$1", array($username));
+	if ($username) {
+		$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE DONOR=$1", array($username));
+	} else {
+		$result = pg_query($dbconn, "SELECT * FROM TRANSACTION");
+	}
 	$ans = array();
 
 	while ($row = pg_fetch_row($result)) {
