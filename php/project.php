@@ -116,3 +116,17 @@ function add_project($dbconn, $data) {
 	if (!$result) return error_response('ERROR_OCCURRED');
 	return success_response();
 }
+
+function count_projects_by_category($dbconn) {
+	$result = pg_query($dbconn, "SELECT COUNT(*), CATEGORY FROM PROJECT P GROUP BY CATEGORY;");
+	$ans = array();
+
+	while ($row = pg_fetch_row($result)) {
+		array_push($ans, array(
+			'quantity' => $row[0],
+			'category' => $row[1]
+		));
+	}
+
+	return $ans;
+}

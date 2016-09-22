@@ -16,6 +16,8 @@ if ($query == 'init') {
 } else if ($query == 'view') {
 	$projectid = get($_GET, 'projectid');
 	echo json_encode(get_project_by_id($dbconn, $projectid));
+} else if ($query == 'count') {
+	echo json_encode(count_projects_by_category($dbconn));
 } else if ($query == 'list') {
 	echo json_encode(list_projects($dbconn, $_GET));
 } else if ($query == 'delete') {

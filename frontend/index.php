@@ -7,11 +7,19 @@
 	</head>
 	<body>
 		<?php include 'header.php'?>
-		<button type="submit" class="btn btn-success" id="signout-button"> Sign out </button>
-		<br>
-		<a id="list-project-link" href="/frontend/list_project.php"> List my projects </a>
-		<br>
-		<a id="create-project-link" href="/frontend/create_project.php"> Create new projects </a>
+		<section class="container-fluid no-padding home-container">
+			<div class="slideshow">
+				<div class="slideshow-image">
+					<img src="/frontend/img/art.jpg"> </img>
+					<div class="slideshow-center-line"> </div>
+					<div class="slideshow-center-text clickable">
+						Welcome
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script src="/frontend/js/slideshow.js"> </script>
 		<script>
 			$(document).ready(function () {
 				if (!HAS_LOGGED_IN) {
