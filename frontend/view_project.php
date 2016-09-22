@@ -24,7 +24,7 @@
 							</div>
 							<div class="project-view-donate-panel">	
 								<div class="input-group"> 
-									<input class="form-control" type="number" placeholder="Enter amount"/>
+									<input class="money-input form-control" type="number" placeholder="Enter amount"/>
 									<span class="input-group-btn">";
 										<button class="donate-button btn btn-default" type="button">Donate</button>"
 									</span>

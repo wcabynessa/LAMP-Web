@@ -128,13 +128,14 @@ function viewProjectById(projectId) {
 		});
 
 		// Bind event handler to projects
-		var donateButtonSelector = "#project-card-" + project.id + " .donate-button";
+		var donateButtonSelector = ".project-view-donate-panel .donate-button";
 		$(donateButtonSelector).on('click', function (e) {
 			e.preventDefault();
 
-			var moneyInputSelect = "#project-card-" + project.id + " .money-input";
+			var moneyInputSelect = ".project-view-donate-panel .money-input";
 			var money = $(moneyInputSelect).val();
 
+			if (!money) return false;
 			donateProject(project, money);
 		});
 	});
