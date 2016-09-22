@@ -51,8 +51,7 @@
 									</span>
 								</div>
 							</div>
-							<div id="image-container">
-							</div>
+							<div id="image-container"> </div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success"> Submit </button>
 							</div>

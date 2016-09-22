@@ -40,9 +40,51 @@ function get_project_by_id($dbconn, $projectid) {
 	return get_project_from_raw_data($row);
 }
 
-function get_projects_by_owner($dbconn, $username) {
-	$result = pg_query_params($dbconn, "SELECT * FROM PROJECT WHERE OWNER=$1", array($username));
+function list_projects($dbconn, $args) {
+	$query = "SELECT * FROM PROJECT P";
+	$filter_criteria = array();
+	$query_params = array();
 
+	// Add filter criteria
+	if (get($args, 'username')) {
+		$username = $args['username'];
+		array_push($filter_criteria, array('key' => 'OWNER', 'value' => $username));
+	}
+	if (get($args, 'category')) {
+		$category= $args['category'];
+		array_push($filter_criteria, array('key' => 'CATEGORY', 'value' => $category));
+	}
+
+	// Nesting query
+	foreach ($filter_criteria as $filter_criterion) {
+		$key = $filter_criterion['key'];
+		$value = $filter_criterion['value'];
+
+		array_push($query_params, $value);
+		$query_param_index = count($query_params);
+
+		$query = "SELECT * FROM (" . $query . ") P WHERE " . $key . "=$" . $query_param_index;
+	}
+
+	// Search
+	if (get($args, 'search')) {
+		$search_pattern = "%" . $args['search'] . "%";
+		array_push($query_params, $search_pattern);
+		$query_param_index = count($query_params);
+
+		$query = "SELECT * FROM (" . $query . ") P WHERE TITLE LIKE $" . $query_param_index;
+	}
+
+	// OrderBy, default = created time
+	$order_attr = get($args, 'order_by', 'CREATED_TIME');
+	$query = "SELECT * FROM (" . $query . ") P ORDER BY " . $order_attr;
+
+	// Check if descending order is needed
+	if (get($args, 'is_desc')) {
+		$query = $query . " DESC";
+	}
+
+	$result = pg_query_params($dbconn, $query, $query_params);
 	$ans = array();
 
 	while ($row = pg_fetch_row($result)) {
@@ -73,4 +115,18 @@ function add_project($dbconn, $data) {
 
 	if (!$result) return error_response('ERROR_OCCURRED');
 	return success_response();
+}
+
+function count_projects_by_category($dbconn) {
+	$result = pg_query($dbconn, "SELECT COUNT(*), CATEGORY FROM PROJECT P GROUP BY CATEGORY;");
+	$ans = array();
+
+	while ($row = pg_fetch_row($result)) {
+		array_push($ans, array(
+			'quantity' => $row[0],
+			'category' => $row[1]
+		));
+	}
+
+	return $ans;
 }
