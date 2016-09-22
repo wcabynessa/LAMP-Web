@@ -19,7 +19,7 @@ $('#create-project-form').on('submit', function (e) {
 		data: {
 			query: 'add',
 			title: title,
-			owner: USERNAME,
+			owner: USER.username,
 			description: description,
 			target_amount: target_amount,
 			images: JSON.stringify(imageList),
@@ -56,7 +56,7 @@ function donateProject(project, money) {
 		method: 'POST',
 		data: {
 			query: 'create',
-			username: USERNAME,
+			username: USER.username,
 			project_id: project.id,
 			amount: money
 		}
