@@ -15,20 +15,39 @@ function create_transaction_table($dbconn) {
 	return pg_query($dbconn, $query);
 }
 
+function get_transaction_from_raw_data($data) {
+	return array(
+		'id' => $data[0],
+		'donor' => $data[1],
+		'project_id' => $data[2],
+		'amount' => $data[3],
+		'description' => $data[4],
+		'created_time' => $data[5],
+	);
+}
+
 function get_transactions_by_username($dbconn, $username) {
-	$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE DONOR=$1", array($username));
+	if ($username) {
+		$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE DONOR=$1", array($username));
+	} else {
+		$result = pg_query($dbconn, "SELECT * FROM TRANSACTION");
+	}
 	$ans = array();
 
 	while ($row = pg_fetch_row($result)) {
-		$transaction = array(
-			'id' => $row[0],
-			'donor' => $row[1],
-			'project_id' => $row[1],
-			'amount' => $row[1],
-			'description' => $row[1],
-			'created_time' => $row[1],
-		);
+		$transaction = get_transaction_from_raw_data($row);
+		array_push($ans, $transaction);
+	}
 
+	return $ans;
+}
+
+function get_transactions_by_project_id($dbconn, $project_id) {
+	$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE PROJECT_ID=$1", array($project_id));
+	$ans = array();
+
+	while ($row = pg_fetch_row($result)) {
+		$transaction = get_transaction_from_raw_data($row);
 		array_push($ans, $transaction);
 	}
 

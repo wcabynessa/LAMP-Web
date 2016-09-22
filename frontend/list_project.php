@@ -9,13 +9,13 @@
 		<?php include 'header.php'?>
 		<section class="container-fluid main-container">
 			<div class="row">
-				<div id="project-container" class="col-xs-6 col-xs-offset-3">
+				<div id="project-container" class="col-lg-8 col-lg-offset-3">
 				</div>
 			</div>
 		</section>
 		<div class="container-fluid project-filter-container">
 			<div class="row">
-				<div class="col-xs-2 project-filter-bar">
+				<div class="project-filter-bar">
 					<fieldset>
 						<div class="project-filter-bar-title"> Filter the results </div>
 						<form class="project-filter-form">

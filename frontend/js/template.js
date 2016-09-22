@@ -1,3 +1,63 @@
+var getProjectTableTemplate = function (projects) {
+	var html = "";
+
+	html += "<label> Projects: </label>";
+	html += "<table class=\"table\">";
+	html += "	<tr>";
+	html += "		<th> ID </th>";
+	html += "		<th> Title </th>";
+	html += "		<th> Owner </th>";
+	html += "		<th> Description </th>";
+	html += "		<th> Category </th>";
+	html += "		<th> Funded Amount </th>";
+	html += "		<th> Target Amount </th>";
+	html += "		<th> Created Time </th>";
+	html += "	</tr>";
+
+	projects.forEach(function (project) {
+		html += "<tr>";
+		html += "	<td> " + project.id + "</td>";
+		html += "	<td> " + project.title + "</td>";
+		html += "	<td> " + project.owner + "</td>";
+		html += "	<td><div class=\"truncate\">" + project.description + "</div></td>";
+		html += "	<td> " + project.category + "</td>";
+		html += "	<td> " + project.funded_amount + "</td>";
+		html += "	<td> " + project.target_amount + "</td>";
+		html += "	<td> " + project.created_time + "</td>";
+		html += "</tr>";
+	});
+
+	html += "</table>";
+	return html;
+}
+
+var getTransactionTableTemplate = function (transactions) {
+	var html = "";
+
+	html += "<label> Donations: </label>";
+	html += "<table class=\"table\">";
+	html += "	<tr>";
+	html += "		<th> ID </th>";
+	html += "		<th> Donor </th>";
+	html += "		<th> Project Id </th>";
+	html += "		<th> Amount </th>";
+	html += "		<th> Created Time </th>";
+	html += "	</tr>";
+
+	transactions.forEach(function (transaction) {
+		html += "<tr>";
+		html += "	<td> " + transaction.id + "</td>";
+		html += "	<td> " + transaction.donor + "</td>";
+		html += "	<td> " + transaction.project_id + "</td>";
+		html += "	<td> " + transaction.amount + "</td>";
+		html += "	<td> " + transaction.created_time + "</td>";
+		html += "</tr>";
+	});
+
+	html += "</table>";
+	return html;
+}
+
 var getImageTemplate = function(imageUrl, params = {}) {
 	var floatValue = params.floatValue || 'float-left';
 	var width = params.width;
@@ -28,21 +88,15 @@ var getImageListTemplate = function(imageUrlList, params = {}) {
 	return html;
 }
 
-var getViewProjectTemplate = function(project) {
-	var html = "";
+var getDonationListTemplate = function (donations) {
+	var html= "";
 
-	html += "<div class=\"project-card\" id=\"project-card-" + project.id +"\">";
-	html += "	<h3 class=\"project-title clickable\"> " + project.title + "</h3>";
-	html += "	<h6> Goal: " + project.target_amount + "&nbsp;&nbsp;Funded: " + project.funded_amount + "</h6>";
-	html += "	<div> " + project.description + "</div>";
-	html += "	<div> " + getImageListTemplate(project.images, {floatValue:'float-left',height:'70px'}) + "</div>";
-	html += "	<div class=\"input-group\">";
-	html += "		<input class=\"money-input form-control\" type=\"number\"/>";
-	html += "		<span class=\"input-group-btn\">";
-	html += "			<button class=\"donate-button btn btn-default\" type=\"button\">Donate</button>";
-	html += "		</span>";
-	html += "	</div>";
-	html += "</div>";
+	donations.forEach(function (donation) {
+		html += "<div class=\"project-view-donation-card\">";
+		html += "	<h5> " + donation.donor + " </h5>";
+		html += "	<div> " + donation.amount + " $ </div>";
+		html += "</div>";
+	});
 
 	return html;
 }

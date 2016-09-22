@@ -13,6 +13,9 @@ if ($query == 'init') {
 	}
 } else if ($query == 'create') {
 	echo json_encode(create_transaction($dbconn, $_POST));
+} else if ($query == 'recent') {
+	$project_id = get($_GET, 'project_id');
+	echo json_encode(get_transactions_by_project_id($dbconn, $project_id));
 } else if ($query == 'list') {
 	$username= get($_GET, 'username');
 	echo json_encode(get_transactions_by_username($dbconn, $username));

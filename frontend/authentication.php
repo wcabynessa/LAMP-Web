@@ -1,23 +1,28 @@
 <?php
 session_start();
 
+if (!function_exists('get')) {
+	function get($arr, $key, $default = null) {
+		if (isset($arr[$key])) return $arr[$key];
+		return $default;
+	}
+}
+
 if ($_SESSION['user']) {
 	$user = $_SESSION['user'];
-	$username = $user['username'];
-	$firstname = $user['firstname'];
-	$lastname= $user['lastname'];
 	$has_logged_in = 1;
-	$session_id = session_id();
 } else {
-	$username = '';
 	$has_logged_in = 0;
-	$session_id = '';
 }
 ?>
 
 <script>
-var USERNAME = '<?php echo $username; ?>';
-var HAS_LOGGED_IN= <?php echo $has_logged_in; ?>;
-var SESSIONID = '<?php echo $session_id; ?>';
+var USER = {
+	'username': '<?php echo get($user, 'username', ''); ?>',
+	'firstname': '<?php echo get($user, 'firstname', ''); ?>',
+	'lastname': '<?php echo get($user, 'lastname', ''); ?>',
+	'isAdmin': '<?php echo (get($user, 'is_admin') ? 1 : 0); ?>',
+};
+var HAS_LOGGED_IN = <?php echo $has_logged_in; ?>;
 </script>
 
