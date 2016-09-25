@@ -18,20 +18,6 @@
 				</div>
 			</div>
 		</section>
-
 		<script src="/frontend/js/slideshow.js"> </script>
-		<script>
-			$(document).ready(function () {
-				if (!HAS_LOGGED_IN) {
-					$('#account-dropdown').hide();
-					$('#signout-button').hide();
-					$('#list-project-link').hide();
-					$('#create-project-link').hide();
-				} else {
-					$('#login-dropdown').hide();
-				}
-			});
-		</script>
 	</body>
 </html>
-

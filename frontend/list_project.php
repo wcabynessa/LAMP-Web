@@ -72,6 +72,8 @@
 			viewProjects(URL_PARAMS);
 			initFilterValue(URL_PARAMS);
 		</script>
+		<script>
+			$('#login-dropdown').hide();
+		</script>
 	</body>
 </html>
-

@@ -19,16 +19,16 @@
 	  </div>
 	  <div class="col-xs-6 row" >
 		<ul class="nav navbar-nav pull-right col-xs-6 row">
-		  <li class="nav navbar-nav col-xs-4 text-center"><a href="#">Showcase<span class="sr-only">(current)</span></a></li>
+		  <li class="nav navbar-nav col-xs-4 text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
 		  <li class="nav navbar-nav col-xs-4 text-center"><a href="#">My projects</a></li>
 			<li class="dropdown" id="account-dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your account <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Profile</a></li>
-						<li><a href="#">Something</a></li>
-						<li><a href="#">Something else here</a></li>
+						<li><a href="/frontend/profile.php">Profile</a></li>
+						<li><a href="/frontend/create_project.php">Create project</a></li>
+						<li><a href="#">Account settings</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">Log out</a></li>
+						<li><button id="#signout-button">Log out</a></li>
 					</ul>
 			</li>
 			<li class="dropdown" id="login-dropdown">
@@ -43,4 +43,15 @@
 
 	</div>
 </nav>
-
+<script>
+    $(document).ready(function () {
+        if (!HAS_LOGGED_IN) {
+            $('#account-dropdown').hide();
+            $('#signout-button').hide();
+            $('#list-project-link').hide();
+            $('#create-project-link').hide();
+        } else {
+            $('#login-dropdown').hide();
+        }
+    });
+</script>
