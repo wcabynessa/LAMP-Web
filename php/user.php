@@ -12,6 +12,7 @@ function create_user_table($dbconn) {
 	$query .= "FIRSTNAME VARCHAR(32) DEFAULT '',";
 	$query .= "LASTNAME VARCHAR(32) DEFAULT '',";
 	$query .= "IS_ADMIN BOOLEAN NOT NULL DEFAULT FALSE,";
+	$query .= "TYPE VARCHAR(30) REFERENCES TYPE(TYPE) DEFAULT 'bidder',";
 	$query .= "PRIMARY KEY(ID));";
 
 	return pg_query($dbconn, $query);
@@ -29,7 +30,8 @@ function get_user_by_username($dbconn, $username) {
 		'hashed_password' => $row[2],
 		'firstname' => $row[3],
 		'lastname' => $row[4],
-		'is_admin' => $row[5]
+		'is_admin' => $row[5],
+		'type' => $row[6]
 	);
 }
 
