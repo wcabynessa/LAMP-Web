@@ -1,4 +1,5 @@
-  <nav class="navbar navbar-default" style="border-radius:0;">
+<?php include 'authentication.php'?>
+  <nav class="navbar navbar-default main-header">
 	<div class="container-fluid">
 	  <div class="col-xs-2">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -18,24 +19,16 @@
 		</form>
 	  </div>
 	  <div class="col-xs-6 row" >
-		<ul class="nav navbar-nav pull-right col-xs-6 row">
-		  <li class="nav navbar-nav col-xs-4 text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
-		  <li class="nav navbar-nav col-xs-4 text-center"><a href="#">My projects</a></li>
-			<li class="dropdown" id="account-dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your account <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="/frontend/profile.php">Profile</a></li>
-						<li><a href="/frontend/create_project.php">Create project</a></li>
-						<li><a href="#">Account settings</a></li>
-						<li role="separator" class="divider"></li>
-						<li><button id="#signout-button">Log out</a></li>
-					</ul>
-			</li>
-			<li class="dropdown" id="login-dropdown">
+		<ul class="nav navbar-nav pull-right row">
+		  <li class="nav navbar-nav text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
+		  <li class="nav navbar-nav text-center" id="my-projects-nav"><a href="#">My projects</a></li>
+		  <li class="nav navbar-nav text-center" id="your-account-nav"><a href="#">Your account</a></li>
+			<li class="nav navbar-nav dropdown" id="login-dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a id="signin-link" href="/frontend/signin.php"> Signin here </a></li>
-						<li><a id="signup-link" href="/frontend/signup.php"> Signup here </a></li>
+						<li id="signin-button"><a href="/frontend/signin.php"> Signin here </a></li>
+						<li id="singup-button"><a href="/frontend/signup.php"> Signup here </a></li>
+						<li id="signout-button"><a href="/frontend/signin.php"> Signin here </a></li>
 					</ul>
 			</li>
 		</ul>
@@ -43,15 +36,4 @@
 
 	</div>
 </nav>
-<script>
-    $(document).ready(function () {
-        if (!HAS_LOGGED_IN) {
-            $('#account-dropdown').hide();
-            $('#signout-button').hide();
-            $('#list-project-link').hide();
-            $('#create-project-link').hide();
-        } else {
-            $('#login-dropdown').hide();
-        }
-    });
-</script>
+<script src="/frontend/js/header.js"></script>

@@ -6,6 +6,15 @@ section {
 	background-color: #f0f3f4;
 }
 
+.main-header {
+	font-size: 15px;
+}
+
+.main-header .nav.navbar-nav {
+	padding: 0px;
+	border-radius: 0;
+}
+
 .main-container {
 }
 
