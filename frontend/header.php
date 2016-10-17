@@ -21,8 +21,7 @@
 	  <div class="col-xs-6 row" >
 		<ul class="nav navbar-nav pull-right row">
 		  <li class="nav navbar-nav text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
-		  <li class="nav navbar-nav text-center" id="my-projects-nav"><a href="#">My projects</a></li>
-		  <li class="nav navbar-nav text-center" id="your-account-nav"><a href="#">Your account</a></li>
+		  <li class="nav navbar-nav text-center" id="my-projects-nav"><a href="/frontend/profile.php">My projects</a></li>
 			<li class="nav navbar-nav dropdown" id="login-dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
 					<ul class="dropdown-menu">
