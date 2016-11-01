@@ -11,8 +11,10 @@ if ($query == 'init') {
 	} else {
 		echo "Project table created successfully";
 	}
-} else if ($query == 'add') {
-	echo json_encode(add_project($dbconn, $_POST));
+} else if ($query == 'create') {
+	echo json_encode(create_project($dbconn, $_POST));
+} else if ($query == 'update') {
+	echo json_encode(update_project($dbconn, $_POST));
 } else if ($query == 'view') {
 	$projectid = get($_GET, 'projectid');
 	echo json_encode(get_project_by_id($dbconn, $projectid));

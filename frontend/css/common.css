@@ -111,6 +111,10 @@ button.btn {
 	text-overflow: ellipsis;
 }
 
+.hidden {
+	display: none;
+}
+
 /* ---------------------------- text ------------------- */
 .error-text {
 	color: #e74c3c;
