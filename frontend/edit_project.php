@@ -45,7 +45,7 @@
 								</select>
 							<div class="form-group">
 								<label for="description"> Description: </label>
-								<textarea type="text" class="form-control" name="description" placeholder="Description" id="description"> </textarea>
+								<textarea type="text" class="form-control" name="description" placeholder="Description" id="description" rows="10"> </textarea>
 							</div>
 							<div class="form-group">
 								<div class="input-group">
