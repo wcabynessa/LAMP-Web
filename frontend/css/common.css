@@ -24,6 +24,7 @@ section {
 }
 
 /*--------------------- Override bootstrap elements --*/
+
 table.table {
 	background-color: white;
 }
@@ -397,4 +398,40 @@ h4 {
 .project-view-donation-card {
 	padding: 0 10px;
 	margin-bottom: 10px;
+}
+
+/*-------------------------------- Sidetab -------------------------*/
+.sidetab-selector-container {
+	width: 15%;
+	float: left;
+}
+
+.sidetab-content-container {
+	width: 85%;
+	float: left;
+	padding: 0 20px 0 20px;
+}
+
+.sidetab-content {
+	background-color: white;
+	display: none;
+}
+
+.sidetab-content.selected {
+	display: inline;
+}
+
+.sidetab-selector {
+	padding: 10px;
+	height: 40px;
+	width: 100%;
+	text-align: center;
+}
+
+.sidetab-selector:hover {
+	cursor: pointer;
+}
+
+.sidetab-selector.selected {
+	background-color: white;
 }

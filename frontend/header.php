@@ -1,7 +1,7 @@
 <?php include 'authentication.php'?>
   <nav class="navbar navbar-default main-header">
 	<div class="container-fluid">
-	  <div class="col-xs-2">
+	  <div class="col-xs-1">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 		  <span class="sr-only">Toggle navigation</span>
 		  <span class="icon-bar"></span>
@@ -10,7 +10,7 @@
 		</button>
 		<a class="navbar-brand pull-right" href="/">Home</a>
 	  </div>
-	  <div class="col-xs-10 row" >
+	  <div class="col-xs-11 row" >
 		<ul class="nav navbar-nav pull-right row">
 		  <li class="nav navbar-nav text-center" id="create-projects-nav"><a href="/frontend/create_project.php">Create projects</a></li>
 		  <li class="nav navbar-nav text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
