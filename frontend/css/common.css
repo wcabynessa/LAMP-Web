@@ -435,3 +435,8 @@ h4 {
 .sidetab-selector.selected {
 	background-color: white;
 }
+
+/*--------------------------------- Projects container -------------------*/
+#projects-container table tr:hover {
+	cursor: pointer;
+}

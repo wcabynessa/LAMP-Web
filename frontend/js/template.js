@@ -1,7 +1,6 @@
 var getProjectTableTemplate = function (projects) {
 	var html = "";
 
-	html += "<label> Projects: </label>";
 	html += "<table class=\"table\">";
 	html += "	<tr>";
 	html += "		<th> ID </th>";
@@ -15,7 +14,9 @@ var getProjectTableTemplate = function (projects) {
 	html += "	</tr>";
 
 	projects.forEach(function (project) {
-		html += "<tr>";
+		var rowId = "project-table-row-" + project.id;
+
+		html += "<tr id=\"" + rowId + "\">";
 		html += "	<td> " + project.id + "</td>";
 		html += "	<td> " + project.title + "</td>";
 		html += "	<td> " + project.owner + "</td>";
@@ -34,7 +35,6 @@ var getProjectTableTemplate = function (projects) {
 var getTransactionTableTemplate = function (transactions) {
 	var html = "";
 
-	html += "<label> Donations: </label>";
 	html += "<table class=\"table\">";
 	html += "	<tr>";
 	html += "		<th> ID </th>";
