@@ -10,24 +10,18 @@
 		</button>
 		<a class="navbar-brand pull-right" href="/">Home</a>
 	  </div>
-	  <div class="col-xs-4 row">
-		<form class="navbar-form col-xs-12" role="search" style="padding: 0; width: 100%;">
-		 <div class="input-group" style="width:100%;">
-			<input placeholder="Search" type="text" class="form-control">
-			<span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button></span>
-		  </div>
-		</form>
-	  </div>
-	  <div class="col-xs-6 row" >
+	  <div class="col-xs-10 row" >
 		<ul class="nav navbar-nav pull-right row">
+		  <li class="nav navbar-nav text-center" id="create-projects-nav"><a href="/frontend/create_project.php">Create projects</a></li>
 		  <li class="nav navbar-nav text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
 		  <li class="nav navbar-nav text-center" id="my-projects-nav"><a href="/frontend/profile.php">My projects</a></li>
+		  <li class="nav navbar-nav text-center" id="signout-nav"><a id="signout-button" href="#">Sign out</a></li>
 			<li class="nav navbar-nav dropdown" id="login-dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li id="signin-button"><a href="/frontend/signin.php"> Signin here </a></li>
-						<li id="singup-button"><a href="/frontend/signup.php"> Signup here </a></li>
-						<li id="signout-button"><a href="/frontend/signin.php"> Signin here </a></li>
+						<li id="signup-button"><a href="/frontend/signup.php"> Signup here </a></li>
+
 					</ul>
 			</li>
 		</ul>

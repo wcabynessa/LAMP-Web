@@ -9,8 +9,9 @@
 		<section class="container-fluid main-container">
 			<div class="row">
 				<div class="col-xs-offset-4 col-xs-4">
+					<div class="input-area-container">
 					<fieldset>
-						<legend> Edit project </legend>
+						<h4> Edit project </h4>
 						<form id="edit-project-form">
 							<div class="form-group hidden">
 								<input type="text" class="form-control" name="title" id="project-id">
@@ -63,6 +64,7 @@
 							</div>
 						</form>
 					</fieldset>
+					</div>
 				</div>
 			</div>
 		</section>

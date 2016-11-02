@@ -8,8 +8,9 @@
 		<section class="container-fluid main-container">
 			<div class="row">
 				<div class="col-xs-offset-4 col-xs-4">
+					<div class="input-area-container">
 					<fieldset>
-						<legend> Create project </legend>
+						<h4> Create project </h4>
 						<form id="create-project-form">
 							<div class="form-group">
 								<input type="text" class="form-control" name="title" placeholder="Project title" id="title">
@@ -54,11 +55,9 @@
 							<div class="form-group">
 								<button type="submit" class="btn btn-success"> Submit </button>
 							</div>
-							<div class="form-group">
-								<span class="error-text" id="signup-feedback"></span>
-							</div>
 						</form>
 					</fieldset>
+					</div>
 				</div>
 			</div>
 		</section>
