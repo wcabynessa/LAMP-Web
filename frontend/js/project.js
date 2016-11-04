@@ -59,6 +59,7 @@ function preprocessProjectData(project) {
 		project.main_image = '/frontend/img/image-not-found.png';
 	}
 	project.progress = Math.min(project.funded_amount * 1.0 / project.target_amount * 100, 100.0);
+	project.progress = Math.round(project.progress * 10) / 10.0;
 	return project;
 }
 
