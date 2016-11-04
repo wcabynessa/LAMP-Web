@@ -12,7 +12,8 @@ function create_user_table($dbconn) {
 	$query .= "FIRSTNAME VARCHAR(32) DEFAULT '',";
 	$query .= "LASTNAME VARCHAR(32) DEFAULT '',";
 	$query .= "IS_ADMIN BOOLEAN NOT NULL DEFAULT FALSE,";
-	$query .= "TYPE VARCHAR(30) REFERENCES TYPE(TYPE) DEFAULT 'bidder',";
+	$query .= "ABOUT VARCHAR(512) NOT NULL DEFAULT '',";
+	$query .= "IMAGE VARCHAR(256) NOT NULL DEFAULT '',";
 	$query .= "PRIMARY KEY(ID));";
 
 	return pg_query($dbconn, $query);
@@ -30,8 +31,9 @@ function get_user_by_username($dbconn, $username) {
 		'hashed_password' => $row[2],
 		'firstname' => $row[3],
 		'lastname' => $row[4],
-		'is_admin' => $row[5],
-		'type' => $row[6]
+		'is_admin' => ($row[5] == "t" ? True : False),
+		'about' => $row[6],
+		'image' => $row[7]
 	);
 }
 
@@ -54,6 +56,8 @@ function signup($dbconn, $data) {
 	$password = get($data, 'password');
 	$firstname = get($data, 'firstname');
 	$lastname = get($data, 'lastname');
+	$about = get($data, 'about', '');
+	$image = get($data, 'image', '');
 
 	if (!$username) return error_response('INVALID USERNAME');
 	if (get_user_by_username($dbconn, $username)) return error_response('USERNAME ALREADY EXISTS');
@@ -61,8 +65,8 @@ function signup($dbconn, $data) {
 	$hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 	$result = pg_query_params($dbconn, 
-		"INSERT INTO ACCOUNT(USERNAME, HASHED_PASSWORD, FIRSTNAME, LASTNAME) VALUES($1, $2, $3, $4);",
-		array($username, $hashed_password, $firstname, $lastname));
+		"INSERT INTO ACCOUNT(USERNAME, HASHED_PASSWORD, FIRSTNAME, LASTNAME, ABOUT, IMAGE) VALUES($1, $2, $3, $4, $5, $6);",
+		array($username, $hashed_password, $firstname, $lastname, $about, $image));
 
 	if (!$result) return error_response('ERROR OCCURRED');
 	return success_response();

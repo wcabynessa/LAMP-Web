@@ -45,6 +45,9 @@ if ($query == 'init') {
 	session_destroy();
 	unset($_SESSION['user']);
 	echo json_encode(success_response());
+} else if ($query == 'view') {
+	$username = $_GET['username'];
+	echo json_encode(get_user_by_username($dbconn, $username));
 } else {
 	echo json_encode(error_response('Invalid query'));
 }
