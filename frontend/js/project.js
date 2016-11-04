@@ -5,19 +5,20 @@ if (!HAS_LOGGED_IN) {
 
 var imageList = [];
 
-$('#create-project-form').on('submit', function (e) {
-	e.preventDefault();
-
+// Handle both update and create project
+function updateProject(query) {
 	var title = $('#title').val();
 	var description = $('#description').val();
 	var target_amount = $('#target-amount').val();
 	var category = $('#category').val();
+	var projectId = $('#project-id').val();
 
 	$.ajax({
 		url: '/php/project_query_handler.php',
 		method: 'POST',
 		data: {
-			query: 'add',
+			id: projectId,
+			query: query,
 			title: title,
 			owner: USER.username,
 			description: description,
@@ -28,7 +29,17 @@ $('#create-project-form').on('submit', function (e) {
 	}).done(function (data) {
 		window.location.href = '/frontend/list_project.php';
 	});
+};
 
+$('#create-project-form').on('submit', function (e) {
+	e.preventDefault();
+	updateProject('create');
+	return false;
+});
+
+$('#edit-project-form').on('submit', function (e) {
+	e.preventDefault();
+	updateProject('update');
 	return false;
 });
 
@@ -41,10 +52,11 @@ $('#add-image-button').on('click', function (e) {
 });
 
 function preprocessProjectData(project) {
+	// JSONDecode imageList and set main Image
 	if (project.images && project.images.length) {
 		project.main_image = project.images[0];
 	} else {
-		project.main_image = 'http://www.mosaicdevelopmentfl.com/Common/images/jquery/galleria/image-not-found.png';
+		project.main_image = '/frontend/img/image-not-found.png';
 	}
 	project.progress = Math.min(project.funded_amount * 1.0 / project.target_amount * 100, 100.0);
 	return project;
@@ -138,5 +150,29 @@ function viewProjectById(projectId) {
 			if (!money) return false;
 			donateProject(project, money);
 		});
+	});
+}
+
+function InitEditProject(projectId) {
+	$.ajax({
+		url: '/php/project_query_handler.php',
+		method: 'GET',
+		data: {
+			query: 'view',
+			projectid: projectId
+		}
+	}).done(function (data) {
+		var project = preprocessProjectData(JSON.parse(data));
+
+		// Set value of input for editing
+		$('#title').val(project.title);
+		$('#description').val(project.description);
+		$('#target-amount').val(project.target_amount);
+		$('#category').val(project.category);
+		$('#project-id').val(project.id);
+
+		// Initialize image list
+		imageList = project.images;
+		$('#image-container').html(getImageListTemplate(imageList, {height: '80px'}));
 	});
 }

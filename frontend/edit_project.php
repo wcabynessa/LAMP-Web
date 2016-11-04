@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
 		<?php include 'html-header.php'?>
+		<?php include 'url_param_extractor.php'?>
 	</head>
 	<body>
 		<?php include 'header.php'?>
@@ -10,8 +11,11 @@
 				<div class="col-xs-offset-4 col-xs-4">
 					<div class="input-area-container">
 					<fieldset>
-						<h4> Create project </h4>
-						<form id="create-project-form">
+						<h4> Edit project </h4>
+						<form id="edit-project-form">
+							<div class="form-group hidden">
+								<input type="text" class="form-control" name="title" id="project-id">
+							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="title" placeholder="Project title" id="title">
 							</div>
@@ -55,6 +59,9 @@
 							<div class="form-group">
 								<button type="submit" class="btn btn-success"> Submit </button>
 							</div>
+							<div class="form-group">
+								<span class="error-text" id="signup-feedback"></span>
+							</div>
 						</form>
 					</fieldset>
 					</div>
@@ -64,6 +71,10 @@
 
 		<script src="/frontend/js/template.js"> </script>
 		<script src="/frontend/js/project.js"> </script>
+		<script>
+			var projectId = URL_PARAMS['id'];
+			InitEditProject(projectId);
+		</script>
 	</body>
 </html>
 

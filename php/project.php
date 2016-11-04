@@ -101,7 +101,7 @@ function delete_project_by_id($dbconn, $projectid) {
 	return success_response();
 }
 
-function add_project($dbconn, $data) {
+function create_project($dbconn, $data) {
 	$title = get($data, 'title');
 	$owner = get($data, 'owner');
 	$description = get($data, 'description');
@@ -112,6 +112,23 @@ function add_project($dbconn, $data) {
 	$result = pg_query_params($dbconn, 
 		"INSERT INTO PROJECT(TITLE, OWNER, DESCRIPTION, IMAGES, TARGET_AMOUNT, CATEGORY) VALUES($1, $2, $3, $4, $5, $6)",
 		array($title, $owner, $description, $images, $target_amount, $category));
+
+	if (!$result) return error_response('ERROR_OCCURRED');
+	return success_response();
+}
+
+function update_project($dbconn, $data) {
+	$id = get($data, 'id');
+	$title = get($data, 'title');
+	$owner = get($data, 'owner');
+	$description = get($data, 'description');
+	$images = get($data, 'images');
+	$target_amount = get($data, 'target_amount');
+	$category = get($data, 'category');
+
+	$result = pg_query_params($dbconn, 
+		"UPDATE PROJECT SET TITLE=$1, OWNER=$2, DESCRIPTION=$3, IMAGES=$4, TARGET_AMOUNT=$5, CATEGORY=$6 WHERE ID=$7",
+		array($title, $owner, $description, $images, $target_amount, $category, $id));
 
 	if (!$result) return error_response('ERROR_OCCURRED');
 	return success_response();

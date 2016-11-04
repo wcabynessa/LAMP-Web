@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
 		<?php include 'html-header.php'?>
-		<?php include 'authentication.php'?>
 		<?php include 'url_param_extractor.php'?>
 	</head>
 	<body>

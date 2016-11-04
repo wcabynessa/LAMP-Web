@@ -23,34 +23,39 @@ function get_transaction_from_raw_data($data) {
 		'amount' => $data[3],
 		'description' => $data[4],
 		'created_time' => $data[5],
+		'project_title' => $data[7]
 	);
 }
 
 function get_transactions_by_username($dbconn, $username) {
+	/*
+	 * Get transactions and their associated project by username
+	 */
 	if ($username) {
-		$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE DONOR=$1", array($username));
+		$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION T, PROJECT P WHERE DONOR=$1 AND T.PROJECT_ID=P.ID", array($username));
 	} else {
-		$result = pg_query($dbconn, "SELECT * FROM TRANSACTION");
+		$result = pg_query($dbconn, "SELECT * FROM TRANSACTION T, PROJECT P WHERE T.PROJECT_ID=P.ID");
 	}
-	$ans = array();
 
+	$ans = array();
 	while ($row = pg_fetch_row($result)) {
 		$transaction = get_transaction_from_raw_data($row);
 		array_push($ans, $transaction);
 	}
-
 	return $ans;
 }
 
 function get_transactions_by_project_id($dbconn, $project_id) {
-	$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION WHERE PROJECT_ID=$1", array($project_id));
-	$ans = array();
+	/*
+	 * Get transaction and its associated project by its id
+	 */
+	$result = pg_query_params($dbconn, "SELECT * FROM TRANSACTION T, PROJECT P WHERE T.PROJECT_ID=P.ID", array($project_id));
 
+	$ans = array();
 	while ($row = pg_fetch_row($result)) {
 		$transaction = get_transaction_from_raw_data($row);
 		array_push($ans, $transaction);
 	}
-
 	return $ans;
 }
 
@@ -59,6 +64,7 @@ function create_transaction($dbconn, $data) {
 	$project_id = get($data, 'project_id');
 	$amount = get($data, 'amount', 0);
 
+	// Create transaction
 	$result = pg_query_params($dbconn, 
 		"INSERT INTO TRANSACTION(DONOR, PROJECT_ID, AMOUNT) VALUES($1, $2, $3)",
 		array($username, $project_id, $amount));

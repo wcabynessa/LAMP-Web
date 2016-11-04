@@ -67,21 +67,4 @@ $(document).ready(function () {
 		// Return false to prevent default action
 		return false;
 	});
-
-	$('#signout-button').on('click', function (e) {
-		console.log('signout');
-		$.ajax({
-			url: '/php/user_query_handler.php',
-			method: 'POST',
-			data: {
-				query: 'signout',
-			},
-		}).done(function (data) {
-			console.log(data);
-			window.location.href = '/';
-		});
-
-		// Return false to prevent default action
-		return false;
-	});
 });
