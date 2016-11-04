@@ -56,7 +56,7 @@ function preprocessProjectData(project) {
 	if (project.images && project.images.length) {
 		project.main_image = project.images[0];
 	} else {
-		project.main_image = 'http://www.mosaicdevelopmentfl.com/Common/images/jquery/galleria/image-not-found.png';
+		project.main_image = '/frontend/img/image-not-found.png';
 	}
 	project.progress = Math.min(project.funded_amount * 1.0 / project.target_amount * 100, 100.0);
 	return project;
