@@ -2,7 +2,7 @@ var getProjectTableTemplate = function (projects) {
 	var html = "";
 
 	html += "<table class=\"table\">";
-	html += "	<tr>";
+	html += "	<tr class=\"table-header\">";
 	html += "		<th> ID </th>";
 	html += "		<th> Title </th>";
 	html += "		<th> Owner </th>";
@@ -16,7 +16,7 @@ var getProjectTableTemplate = function (projects) {
 	projects.forEach(function (project) {
 		var rowId = "project-table-row-" + project.id;
 
-		html += "<tr id=\"" + rowId + "\">";
+		html += "<tr id=\"" + rowId + "\" class=\"table-row\">";
 		html += "	<td> " + project.id + "</td>";
 		html += "	<td> " + project.title + "</td>";
 		html += "	<td> " + project.owner + "</td>";

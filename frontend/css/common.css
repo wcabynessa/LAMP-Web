@@ -437,6 +437,8 @@ h4 {
 }
 
 /*--------------------------------- Projects container -------------------*/
-#projects-container table tr:hover {
+#projects-container table .table-row:hover {
 	cursor: pointer;
+	background-color: #777;
+	color: white;
 }

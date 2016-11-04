@@ -14,7 +14,7 @@
 		<ul class="nav navbar-nav pull-right row">
 		  <li class="nav navbar-nav text-center" id="create-projects-nav"><a href="/frontend/create_project.php">Create projects</a></li>
 		  <li class="nav navbar-nav text-center"><a href="/frontend/list_project.php?category=All">Showcase<span class="sr-only">(current)</span></a></li>
-		  <li class="nav navbar-nav text-center" id="my-projects-nav"><a href="/frontend/profile.php">My projects</a></li>
+		  <li class="nav navbar-nav text-center" id="my-projects-nav"><a href="/frontend/profile.php">Admin</a></li>
 		  <li class="nav navbar-nav text-center" id="signout-nav"><a id="signout-button" href="#">Sign out</a></li>
 			<li class="nav navbar-nav dropdown" id="login-dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
