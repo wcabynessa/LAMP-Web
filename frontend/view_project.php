@@ -8,37 +8,52 @@
 		<?php include 'header.php'?>
 		<section class="container-fluid main-container">
 			<div class="row">
-				<div class="col-xs-8 col-xs-offset-2">
+				<div class="col-xs-10 col-xs-offset-1">
 					<div class="project-view-container">
-						<div class="project-view-image"> 
-							<img src="" height="100%"> </img>
+						<div class="project-view-container-left">
+							<div class="project-view-description">
+								<h3> </h3>
+								<div class="text"> </div>
+								<div class="images"> </div>
+							</div>
 						</div>
-						<div class="project-view-info"> 
-							<div class="project-view-money"> </div>
-							<div class="progress project-view-progress">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow=""> </div>
+						<div class="project-view-container-right">
+							<div class="project-view-image"> 
+								<img src="" width="100%"> </img>
 							</div>
-							<div class="project-view-donate"> 
-								<button class="btn btn-default" type="button"> Donate now </button>
+							<div class="project-view-panel">
+								Donate now ! 
 							</div>
-							<div class="project-view-donate-panel">	
-								<div class="input-group"> 
-									<input class="money-input form-control" type="number" placeholder="Enter amount"/>
-									<span class="input-group-btn">";
-										<button class="donate-button btn btn-default" type="button">Donate</button>"
-									</span>
+							<div class="project-view-group">
+								<div class="row">
+									<div class="col-xs-6" style="border-right: 1px solid #ddd;"> 
+										<div class="project-view-money"> </div>
+										<div class="project-view-total-money"> </div>
+									</div>
+									<div class="col-xs-6"> 
+										<div class="project-view-percentage"> </div>
+									</div>
+								</div>
+								<div class="progress project-view-progress">
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow=""> </div>
+								</div>
+								<div class="project-view-donate-panel">	
+									<div class="input-group"> 
+										<input class="money-input form-control" type="number" placeholder="Enter amount"/>
+										<span class="input-group-btn">";
+											<button class="donate-button btn btn-default" type="button">Donate</button>"
+										</span>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="project-view-description">
-							<h4> Project description: </h4>
-							<div class="text"> </div>
-						</div>
-						<div class="project-view-donations">
-							<div class="project-view-donations-label"> Recent Donations </div>
-							<div class="project-view-donations-container">
+						<!--<div class="project-view-info"> 
+							<div class="project-view-donations">
+								<div class="project-view-donations-label"> Recent Donations </div>
+								<div class="project-view-donations-container">
+								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

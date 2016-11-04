@@ -8,7 +8,7 @@
 		<?php include 'header.php'?>
 		<section class="container-fluid main-container">
 			<div class="row">
-				<div id="project-container" class="col-lg-8 col-lg-offset-3">
+				<div id="project-container" class="col-lg-9 col-lg-offset-3">
 				</div>
 			</div>
 		</section>
@@ -16,11 +16,11 @@
 			<div class="row">
 				<div class="project-filter-bar">
 					<fieldset>
-						<div class="project-filter-bar-title"> Filter the results </div>
+						<h4> Filter the results </h4>
 						<form class="project-filter-form">
 							<div class="form-group">
 								<label for="project-filter-category"> Category: </label>
-								<select class="form-control" id="project-filter-category">
+								<select class="form-control small" id="project-filter-category">
 									<option> All </option>
 									<option> Art </option>
 									<option> Comics </option>
@@ -42,7 +42,7 @@
 							</div>
 							<div class="form-group">
 								<label for="project-filter-order-by"> Order by: </label>
-								<select class="form-control" id="project-filter-order-by">
+								<select class="form-control small" id="project-filter-order-by">
 									<option> CREATED_TIME </option>
 									<option> TITLE </option>
 									<option> FUNDED_AMOUNT </option>
@@ -51,7 +51,7 @@
 							</div>
 							<div class="form-group">
 								<label for="project-filter-order-by"> Search: </label>
-								<input type="text" class="form-control" id="project-filter-search-key">
+								<input type="text" class="form-control small" id="project-filter-search-key">
 							</div>
 						</form>
 						<div class="form-group project-filter-button">
