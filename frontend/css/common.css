@@ -64,10 +64,15 @@ nav.navbar .dropdown ul {
 	margin-bottom: 0;
 }
 
+select.form-control.small {
+	height: 35px;
+}
+
 select.form-control {
 	background-color: white;
 	border: 1px solid #d3dcde;
 	border-top: 2px solid #d3dcde;
+	height: 40px;
 	border-radius: 0;
 	outline: 0;
 }
@@ -78,6 +83,10 @@ select.form-control:active{
 
 select.form-control:focus{
 	box-shadow: none;
+}
+
+input.form-control.small {
+	height: 35px;
 }
 
 input.form-control {
@@ -174,7 +183,7 @@ button.btn {
 /*-------------------------- Project view---------------------*/
 .project-card {
 	color: #3d3d5c;
-	padding: 20px;
+	padding: 20px 20px 18px 20px;
 	margin-bottom: 50px;
 	border: 1px solid #f0f3f4;
 	border-top: 5px solid #2ecc71;
@@ -183,16 +192,19 @@ button.btn {
 
 .project-card-title {
 	color: #090d10;
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
+	margin-top: -5px;
 }
 
 .project-card-owner {
 	margin: 5px 0 5px 0;
+	font-size: 12px;
 }
 
 .project-card-description {
-	height: 10em;
+	height: 7em;
+	font-size: 14px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -205,11 +217,11 @@ button.btn {
 .project-card-funded-money {
 	color: #606b6c;
 	padding: 0;
-	font-size: 27px;
+	font-size: 20px;
 }
 
 .project-card-category {
-	padding: 12px 0 0 0;
+	padding: 5px 0 0 0;
 	text-align: right;
 }
 
@@ -229,21 +241,13 @@ button.btn {
 }
 
 .project-filter-bar {
-	width: 300px;
+	width: 250px;
 	height: 2000px;
 	background-color: white;
 	border: 1px solid #f0f3f4;
 	border-top: 5px solid #2ecc71;
-	padding: 25px;
+	padding: 20px;
 	pointer-events: auto;
-}
-
-.project-filter-bar-title {
-	color: #090d10;
-	font-weight: bold;
-	font-size: 20px;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #e2e8e9;
 }
 
 .project-filter-form {
@@ -300,6 +304,11 @@ button.btn {
 }
 
 /*--------------------------------- Any Input Area ----------------------------*/
+h3 {
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
 h4 {
 	margin-top: 0;
 	margin-bottom: 20px;
@@ -314,20 +323,34 @@ h4 {
 /*--------------------------------- View project page ------------------*/
 .project-view-container {
 	width: 100%;
-	height: 1000px;
 }
 
-.project-view-image {
-	width: 69%;
-	height: 70vh;
-	overflow: hidden;
+.project-view-container-left {
 	float: left;
+	width: 69%;
+}
+
+.project-view-description {
+	background-color: white;
+	padding: 15px;
+	width: 100%;
+}
+
+.project-view-container-right {
+	width: 30%;
+	float: right;
 	display: inline-block;
 }
 
+.project-view-group {
+	width: 100%;
+	background-color: white;
+	padding: 15px;
+}
+
 .project-view-info {
+	margin-top: 10px;
 	width: 30%;
-	height: 70vh;
 	float: right;
 	padding: 15px;
 	display: inline-block;
@@ -335,14 +358,38 @@ h4 {
 	background-color: white;
 }
 
+.project-view-percentage {
+	color: #3d3d5c;
+	font-size: 60px;
+	font-weight: bold;
+}
+
 .project-view-money {
 	color: #3d3d5c;
-	font-size: 25px;
+	font-size: 40px;
 	font-weight: bold;
+}
+
+.project-view-total-money {
+	color: #3d3d5c;
+	font-size: 15px;
 }
 
 .project-view-progress {
 	margin-top: 15px;
+}
+
+.project-view-panel {
+	margin-top: 10px;
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	background-color: #2ecc71;
+	border: 1px solid #2ecc71;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	padding-top: 5px;
 }
 
 .project-view-donate input {
@@ -364,14 +411,6 @@ h4 {
 .project-view-donate-panel button {
 	background-color: #2ecc71;
 	border: 1px solid #2ecc71;
-}
-
-.project-view-description {
-	background-color: white;
-	float: left;
-	margin-top: 20px;
-	padding: 15px;
-	width: 69%;
 }
 
 .project-view-donations {
@@ -441,4 +480,9 @@ h4 {
 	cursor: pointer;
 	background-color: #777;
 	color: white;
+}
+
+/*---------------- project-container -----------------*/
+#project-container {
+	padding-right: 50px;
 }

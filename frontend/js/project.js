@@ -127,12 +127,30 @@ function viewProjectById(projectId) {
 	}).done(function (data) {
 		var project = preprocessProjectData(JSON.parse(data));
 
-		$(".project-view-money").text('$ ' + project.funded_amount + ' of $ ' + project.target_amount + ' goal');
+		// Money and progress
+		$(".project-view-money").text('$' + project.funded_amount);
+		$(".project-view-percentage").text(project.progress + '%');
+		$(".project-view-total-money").text('of $' + project.target_amount);
 
+
+		// Progress bar
 		$(".project-view-progress .progress-bar").attr("aria-valuenow", project.progress);
 		$(".project-view-progress .progress-bar").css("width", project.progress + "%");
 		$(".project-view-image img").attr("src", project.main_image);
+
+		// Project description
+		$(".project-view-description h3").text(project.title);
 		$(".project-view-description .text").text(project.description);
+
+		// Image list
+		imageList = project.images;
+		// Remove the first image as it's displayed in main
+		imageList.splice(0, 1);
+		if (imageList.length) {
+			$('.project-view-description .images').html(getImageListTemplate(imageList, {height: '200px'}));
+		} else {
+			$('.project-view-description .images').hide();
+		}
 
 		getDonationByProjectId(project.id, function (data) {
 			var html = getDonationListTemplate(data);

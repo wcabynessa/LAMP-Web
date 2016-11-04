@@ -104,7 +104,7 @@ var getDonationListTemplate = function (donations) {
 var getProjectCardTemplate = function(project) {
 	var mainImageConfig = {
 		floatValue: 'float-left',
-		outerHeight: '300px',
+		outerHeight: '220px',
 		outerWidth: '100%',
 		height: '100%'
 	}
@@ -112,10 +112,10 @@ var getProjectCardTemplate = function(project) {
 	var html = "";
 
 	html += "<div class=\"row project-card\" id=\"project-card-" + project.id +"\">";
-	html += "	<div class=\"col-xs-5 no-padding\">";
+	html += "	<div class=\"col-xs-3 no-padding\">";
 	html += "		" + getImageTemplate(project.main_image, mainImageConfig);
 	html += "	</div>";
-	html += "	<div class=\"col-xs-7\">"
+	html += "	<div class=\"col-xs-9\">"
 	html += "		<div class=\"project-card-title clickable\"> " + project.title + "</div>";
 	html += "		<div class=\"project-card-owner\"> by " + project.owner + "</div>";
 	html += "		<div class=\"project-card-description\"> " + project.description + "</div>";
@@ -126,7 +126,7 @@ var getProjectCardTemplate = function(project) {
 	html += "			$ " + project.funded_amount + " funded";
 	html += "		</div>";
 	html += "		<div class=\"col-xs-6 project-card-category\">";
-	html += "			<a href=\"\"> view other " + project.category + " projects </a>";
+	html += "			<a href=\"\" class=\"clickable\"> view other " + project.category + " projects </a>";
 	html += "		</div>";
 	//html += "		<div> " + getImageListTemplate(project.images, {floatValue:'float-left',height:'70px'}) + "</div>";
 	html += "	</div>";
