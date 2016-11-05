@@ -70,21 +70,21 @@ function get_project_by_id($dbconn, $projectid) {
 }
 
 function get_most_donated_project($dbconn) {
-	$result = pg_query($dbconn, "SELECT * FROM PROJECT WHERE FUNDED_AMOUNT >= ANY(SELECT FUNDED_AMOUNT FROM PROJECT)");
+	$result = pg_query($dbconn, "SELECT * FROM PROJECT WHERE FUNDED_AMOUNT >= ALL(SELECT FUNDED_AMOUNT FROM PROJECT)");
 	return get_first_project_from_raw_data($result);
 }
 
 // Return project with the most number of donors
 function get_most_interested_project($dbconn) {
 	$third_query = "SELECT COUNT(DISTINCT T1.DONOR) FROM PROJECT P1, TRANSACTION T1 WHERE P1.ID=T1.PROJECT_ID GROUP BY T1.PROJECT_ID";
-	$second_query = "SELECT T.PROJECT_ID FROM PROJECT P, TRANSACTION T WHERE P.ID=T.PROJECT_ID GROUP BY T.PROJECT_ID HAVING COUNT(DISTINCT T.DONOR) >= ANY(" . $third_query . ")";
+	$second_query = "SELECT T.PROJECT_ID FROM PROJECT P, TRANSACTION T WHERE P.ID=T.PROJECT_ID GROUP BY T.PROJECT_ID HAVING COUNT(DISTINCT T.DONOR) >= ALL(" . $third_query . ")";
 	$query = "SELECT * FROM PROJECT WHERE ID IN (" . $second_query . ")";
 	$result = pg_query($dbconn, $query);
 	return get_first_project_from_raw_data($result);
 }
 
 function get_newest_project($dbconn) {
-	$query = "SELECT * FROM PROJECT WHERE CREATED_TIME <= ANY(SELECT CREATED_TIME FROM PROJECT)";
+	$query = "SELECT * FROM PROJECT WHERE CREATED_TIME>=ALL(SELECT CREATED_TIME FROM PROJECT)";
 	$result = pg_query($dbconn, $query);
 	return get_first_project_from_raw_data($result);
 }
