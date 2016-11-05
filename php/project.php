@@ -163,7 +163,7 @@ function create_project($dbconn, $data) {
 	$target_amount = get($data, 'target_amount');
 	$category = get($data, 'category');
 	$target_date = get($data, 'target_date');
-	$created_time = date('Y-m-d');
+	$created_time = date('Y-m-d h:i:s A');
 
 	$result = pg_query_params($dbconn, 
 		"INSERT INTO PROJECT(TITLE, OWNER, DESCRIPTION, IMAGES, TARGET_AMOUNT, CATEGORY, TARGET_DATE, CREATED_TIME) VALUES($1, $2, $3, $4, $5, $6, $7, $8)",

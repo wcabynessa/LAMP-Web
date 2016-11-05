@@ -29,7 +29,12 @@ function updateProject(query) {
 			target_date: targetDate
 		}
 	}).done(function (data) {
-		window.location.href = '/frontend/list_project.php';
+		var data = JSON.parse(data);
+		if (data.STATUS != 'OK') {
+			alert(data.MSG);
+		} else {
+			window.location.href = '/frontend/list_project.php';
+		}
 	});
 };
 

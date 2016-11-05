@@ -19,13 +19,13 @@
 		<section class="container-fluid no-padding home-container">
 			<div class="col-xs-10 col-xs-offset-1 project-best-container">
 
-				<h3> Newest project: </h3>
+				<h3 class="project-most-recent-title"> Newest project: </h3>
 				<div class="project-most-recent"> </div>
 
-				<h3> Most donated project: </h3>
+				<h3 class="project-most-donated-title"> Most donated project: </h3>
 				<div class="project-most-donated"> </div>
 
-				<h3> Most backed project: </h3>
+				<h3 class="project-most-interested-title"> Most backed project: </h3>
 				<div class="project-most-interested"> </div>
 			</div>
 		</section>
@@ -43,14 +43,28 @@
 				var projectList = JSON.parse(data);
 
 				for(key in projectList) {
-					projectList[key] = preprocessProjectData(projectList[key]);
+					if (projectList[key]) {
+						projectList[key] = preprocessProjectData(projectList[key]);
+					}
 				};
 
-				$('.project-most-donated').html(getProjectCardTemplate(projectList.most_donated));
-				$('.project-most-recent').html(getProjectCardTemplate(projectList.newest));
-				$('.project-most-interested').html(getProjectCardTemplate(projectList.most_interested));
+				if (projectList.most_donated) {
+					$('.project-most-donated').html(getProjectCardTemplate(projectList.most_donated));
+				} else {
+					$('h3.project-most-donated-title').hide();
+				}
+				if (projectList.newest) {
+					$('.project-most-recent').html(getProjectCardTemplate(projectList.newest));
+				} else {
+					$('h3.project-most-recent-title').hide();
+				}
+				if (projectList.most_interested) {
+					$('.project-most-interested').html(getProjectCardTemplate(projectList.most_interested));
+				} else {
+					$('h3.project-most-interested-title').hide();
+				}
 
-				for(key in projectList) {
+				for(key in projectList) if (projectList[key]) {
 					var project = projectList[key];
 					var htmlSelector = "#project-card-" + project.id + " .project-card-title";
 					$(htmlSelector).on('click', function () {
