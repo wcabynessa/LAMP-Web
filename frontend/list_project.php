@@ -47,11 +47,24 @@
 									<option> TITLE </option>
 									<option> FUNDED_AMOUNT </option>
 									<option> TARGET_AMOUNT </option>
+									<option> TARGET_DATE </option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="project-filter-order-by"> Search: </label>
 								<input type="text" class="form-control small" id="project-filter-search-key">
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" id="not-finished-only"/>
+									Not finished only
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" id="reverse-order"/>
+									Reverse order
+								</label>
 							</div>
 						</form>
 						<div class="form-group project-filter-button">

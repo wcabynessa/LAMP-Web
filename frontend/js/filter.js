@@ -16,11 +16,15 @@ $(".project-filter-button button").on('click', function (e) {
 	if (category === 'All') category = '';
 	var search_key = $("#project-filter-search-key").val();
 	var order_by = $("#project-filter-order-by").val();
+	var not_finished = ($('#not-finished-only').prop('checked') ? 1 : 0);
+	var reverse_order = ($('#reverse-order').prop('checked') ? 1 : 0);
 
 	var params = {
 		'category': category,
 		'search': search_key,
-		'order_by': order_by
+		'order_by': order_by,
+		'reverse_order': reverse_order,
+		'not_finished': not_finished
 	};
 
 	window.location.href = getUrl('/frontend/list_project.php', params);
@@ -36,6 +40,13 @@ function initFilterValue(args) {
 	}
 	if (args['search_key']) {
 		$("#project-filter-search-key").val(args['search']);
+	}
+	console.log(args);
+	if (args['reverse_order'] == "1") {
+		$("#reverse-order").prop('checked', true);
+	}
+	if (args['not_finished'] == "1") {
+		$('#not-finished-only').prop('checked', true);
 	}
 };
 

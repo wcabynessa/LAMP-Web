@@ -11,7 +11,7 @@ function create_project_table($dbconn) {
 	$query .= "CATEGORY VARCHAR(64) DEFAULT 'OTHERS',";
 	$query .= "FUNDED_AMOUNT INTEGER DEFAULT 0,";
 	$query .= "TARGET_AMOUNT INTEGER NOT NULL,";
-	$query .= "CREATED_TIME DATE NOT NULL DEFAULT clock_timestamp(),";
+	$query .= "CREATED_TIME TIMESTAMP NOT NULL DEFAULT clock_timestamp(),";
 	$query .= "TARGET_DATE DATE NOT NULL,";
 	$query .= "PRIMARY KEY(ID));";
 
@@ -51,10 +51,6 @@ function get_project_by_id($dbconn, $projectid) {
 	$today = date('Y-m-d');
 	$project['days_to_go'] = max(date_difference($today, $project['target_date']), 0);
 
-	// Add elapsed days
-	$today = date('Y-m-d');
-	$project['elapsed_days'] = date_difference($project['created_time'], $today);
-
 	return $project;
 }
 
@@ -93,15 +89,21 @@ function list_projects($dbconn, $args) {
 		$query = "SELECT * FROM (" . $query . ") P WHERE TITLE LIKE $" . $query_param_index;
 	}
 
+	// Not finished only
+	if (get($args, 'not_finished')) {
+		$query = "SELECT * FROM (" . $query . ") P WHERE FUNDED_AMOUNT < TARGET_AMOUNT";
+	}
+
 	// OrderBy, default = created time
 	$order_attr = get($args, 'order_by', 'CREATED_TIME');
 	$query = "SELECT * FROM (" . $query . ") P ORDER BY " . $order_attr;
 
 	// Check if descending order is needed
-	if (get($args, 'is_desc')) {
+	if (!get($args, 'reverse_order')) {
 		$query = $query . " DESC";
 	}
 
+	// Query here
 	$result = pg_query_params($dbconn, $query, $query_params);
 	$ans = array();
 
