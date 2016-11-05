@@ -126,7 +126,7 @@ var getProjectCardTemplate = function(project) {
 	html += "			$ " + project.funded_amount + " funded";
 	html += "		</div>";
 	html += "		<div class=\"col-xs-6 project-card-category\">";
-	html += "			<a href=\"\" class=\"clickable\"> view other " + project.category + " projects </a>";
+	html += "			<a href=\"/frontend/list_project.php?category=" + project.category + "\" class=\"clickable\"> view other " + project.category + " projects </a>";
 	html += "		</div>";
 	//html += "		<div> " + getImageListTemplate(project.images, {floatValue:'float-left',height:'70px'}) + "</div>";
 	html += "	</div>";

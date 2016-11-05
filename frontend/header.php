@@ -4,7 +4,7 @@
 	  <div class="col-xs-2 row">
 		<div class="nav navbar-nav pull-right row">
 			<li class="nav navbar-nav text-center"><a class="navbar-brand pull-right" href="/">Home</a></li>
-			<li class="nav navbar-nav text-center"><a class="navbar-brand pull-right" href="/frontend/list_project.php?category=All">All projects</a></li>
+			<li class="nav navbar-nav text-center"><a class="pull-right" href="/frontend/list_project.php?category=All">All projects</a></li>
 		</div>
 	  </div>
 	  <div class="col-xs-10 row" >
