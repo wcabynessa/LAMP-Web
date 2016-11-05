@@ -28,7 +28,7 @@
 									<option> Dance </option>
 									<option> Design </option>
 									<option> Fashion </option>
-									<option> Film & Video </option>
+									<option> Movie </option>
 									<option> Food </option>
 									<option> Games </option>
 									<option> Journalism </option>
@@ -47,11 +47,31 @@
 									<option> TITLE </option>
 									<option> FUNDED_AMOUNT </option>
 									<option> TARGET_AMOUNT </option>
+									<option> TARGET_DATE </option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="project-filter-top"> Other filters: </label>
+								<select class="form-control small" id="project-filter-top">
+									<option> NONE </option>
+									<option> ALMOST_THERE </option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="project-filter-order-by"> Search: </label>
 								<input type="text" class="form-control small" id="project-filter-search-key">
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" id="not-finished-only"/>
+									Not finished only
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" id="reverse-order"/>
+									Reverse order
+								</label>
 							</div>
 						</form>
 						<div class="form-group project-filter-button">

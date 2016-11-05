@@ -20,7 +20,7 @@ section {
 }
 
 .home-container {
-	margin-top: -50px;
+	margin-top: 0px;
 }
 
 /*--------------------- Override bootstrap elements --*/
@@ -186,7 +186,7 @@ button.btn {
 	padding: 20px 20px 18px 20px;
 	margin-bottom: 50px;
 	border: 1px solid #f0f3f4;
-	border-top: 5px solid #2ecc71;
+/*	border-top: 5px solid #2ecc71; */
 	background-color: white;
 }
 
@@ -245,7 +245,7 @@ button.btn {
 	height: 2000px;
 	background-color: white;
 	border: 1px solid #f0f3f4;
-	border-top: 5px solid #2ecc71;
+	border-top: 5px solid #2ecc71; 
 	padding: 20px;
 	pointer-events: auto;
 }
@@ -358,21 +358,35 @@ h4 {
 	background-color: white;
 }
 
-.project-view-percentage {
-	color: #3d3d5c;
-	font-size: 50px;
-	font-weight: bold;
-}
-
-.project-view-money {
+.project-view-text-col {
 	color: #3d3d5c;
 	font-size: 40px;
 	font-weight: bold;
 }
 
-.project-view-total-money {
+.project-view-text-col-second-row span {
+	font-size: 20px;
+}
+
+.project-view-text-col-second-row {
 	color: #3d3d5c;
 	font-size: 15px;
+	line-height: 20px;
+}
+
+.project-view-people {
+	color: #3d3d5c;
+	font-size: 15px;
+}
+
+.project-view-text .text {
+	color: #3d3d5c;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.project-view-text .text span {
+	font-size: 20px;
 }
 
 .project-view-progress {
@@ -485,4 +499,9 @@ h4 {
 /*---------------- project-container -----------------*/
 #project-container {
 	padding-right: 50px;
+}
+
+/*---------------- home- page ------------------------*/
+.project-best-container {
+	margin-top: 50px;
 }

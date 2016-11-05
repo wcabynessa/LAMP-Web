@@ -25,14 +25,26 @@
 								Donate now ! 
 							</div>
 							<div class="project-view-group">
+								<div class="project-view-text project-view-days">
+									<div class="text"> </div>
+								</div>
+								<div class="project-view-text project-view-people">
+									<div class="text"> </div>
+								</div>
 								<div class="row">
 									<div class="col-xs-6" style="border-right: 1px solid #ddd;"> 
-										<div class="project-view-money"> </div>
-										<div class="project-view-total-money"> </div>
+										<div class="project-view-text-col project-view-money"> </div>
+										<div class="project-view-text-col-second-row project-view-total-money"> </div>
 									</div>
 									<div class="col-xs-6"> 
-										<div class="project-view-percentage"> </div>
+										<div class="project-view-text-col project-view-percentage"> </div>
+										<div class="project-view-text-col-second-row"> 
+											finished
+										</div>
 									</div>
+								</div>
+								<div class="project-view-text">
+									<div class="text"> </div>
 								</div>
 								<div class="progress project-view-progress">
 									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow=""> </div>

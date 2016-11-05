@@ -28,7 +28,7 @@
 									<option> Dance </option>
 									<option> Design </option>
 									<option> Fashion </option>
-									<option> Film & Video </option>
+									<option> Movie </option>
 									<option> Food </option>
 									<option> Games </option>
 									<option> Journalism </option>
@@ -42,6 +42,10 @@
 							<div class="form-group">
 								<label for="description"> Description: </label>
 								<textarea type="text" class="form-control" name="description" placeholder="Description" id="description" rows="10"> </textarea>
+							</div>
+							<div class="form-group">
+								<label for="target-date"> Target date: </label>
+								<input type="date" class="form-control" name="target-date" id="target-date"> </input>
 							</div>
 							<div class="form-group">
 								<div class="input-group">

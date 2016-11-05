@@ -11,6 +11,10 @@ $(document).ready(function () {
 		$("#my-projects-nav").hide();
 	}
 
+	if (!USER || !USER.isAdmin) {
+		$("#my-projects-nav a").text("My projects");
+	}
+
 	$('#signout-button').on('click', function (e) {
 		e.preventDefault();
 		console.log('singint out');
