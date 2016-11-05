@@ -25,7 +25,7 @@ $(document).ready(function () {
 		'Dance',
 		'Design',
 		'Fashion',
-		'Film & Video',
+		'Movie',
 		'Food',
 		'Games',
 		'Journalism',

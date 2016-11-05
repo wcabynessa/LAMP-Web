@@ -28,7 +28,7 @@
 									<option> Dance </option>
 									<option> Design </option>
 									<option> Fashion </option>
-									<option> Film & Video </option>
+									<option> Movie </option>
 									<option> Food </option>
 									<option> Games </option>
 									<option> Journalism </option>
