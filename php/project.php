@@ -74,6 +74,7 @@ function get_most_donated_project($dbconn) {
 	return get_first_project_from_raw_data($result);
 }
 
+// Return project with the most number of donors
 function get_most_interested_project($dbconn) {
 	$third_query = "SELECT COUNT(DISTINCT T1.DONOR) FROM PROJECT P1, TRANSACTION T1 WHERE P1.ID=T1.PROJECT_ID GROUP BY T1.PROJECT_ID";
 	$second_query = "SELECT T.PROJECT_ID FROM PROJECT P, TRANSACTION T WHERE P.ID=T.PROJECT_ID GROUP BY T.PROJECT_ID HAVING COUNT(DISTINCT T.DONOR) >= ANY(" . $third_query . ")";
@@ -127,6 +128,12 @@ function list_projects($dbconn, $args) {
 	if (get($args, 'not_finished')) {
 		$query = "SELECT * FROM (" . $query . ") P WHERE FUNDED_AMOUNT < TARGET_AMOUNT";
 	}
+
+	// Almost there
+	if (get($args, 'top_filter') == 'ALMOST_THERE') {
+		$query = "SELECT * FROM (" . $query . ") P WHERE P.FUNDED_AMOUNT*10>=P.TARGET_AMOUNT*9 AND P.FUNDED_AMOUNT<P.TARGET_AMOUNT";
+	}
+	
 
 	// OrderBy, default = created time
 	$order_attr = get($args, 'order_by', 'CREATED_TIME');

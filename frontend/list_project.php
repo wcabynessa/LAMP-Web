@@ -51,6 +51,13 @@
 								</select>
 							</div>
 							<div class="form-group">
+								<label for="project-filter-top"> Other filters: </label>
+								<select class="form-control small" id="project-filter-top">
+									<option> NONE </option>
+									<option> ALMOST_THERE </option>
+								</select>
+							</div>
+							<div class="form-group">
 								<label for="project-filter-order-by"> Search: </label>
 								<input type="text" class="form-control small" id="project-filter-search-key">
 							</div>
