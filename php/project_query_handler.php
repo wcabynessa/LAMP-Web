@@ -25,6 +25,13 @@ if ($query == 'init') {
 } else if ($query == 'delete') {
 	$projectid= get($_GET, 'projectid');
 	echo json_encode(delete_project_by_id($dbconn, $projectid));
+} else if ($query == 'best') {
+	$ans = array(
+		'most_donated' => get_most_donated_project($dbconn),
+		'most_interested' => get_most_interested_project($dbconn),
+		'newest' => get_newest_project($dbconn)
+	);
+	echo json_encode($ans);
 } else {
 	echo json_encode(error_response('Invalid query'));
 }

@@ -34,6 +34,21 @@ function get_project_from_raw_data($data) {
 	);
 }
 
+function get_first_project_from_raw_data($result) {
+	if ($row = pg_fetch_row($result)) {
+		return get_project_from_raw_data($row);
+	} else return null;
+}
+
+function get_project_list_from_raw_data($result) {
+	$ans = array();
+	while ($row = pg_fetch_row($result)) {
+		$project = get_project_from_raw_data($row);
+		array_push($ans, $project);
+	}
+	return $ans;
+}
+
 function get_project_by_id($dbconn, $projectid) {
 	$result = pg_query_params($dbconn, "SELECT * FROM PROJECT WHERE ID=$1;", array($projectid));
 	if (!$result || (pg_num_rows($result) == 0)) return null;
@@ -52,6 +67,25 @@ function get_project_by_id($dbconn, $projectid) {
 	$project['days_to_go'] = max(date_difference($today, $project['target_date']), 0);
 
 	return $project;
+}
+
+function get_most_donated_project($dbconn) {
+	$result = pg_query($dbconn, "SELECT * FROM PROJECT WHERE FUNDED_AMOUNT >= ANY(SELECT FUNDED_AMOUNT FROM PROJECT)");
+	return get_first_project_from_raw_data($result);
+}
+
+function get_most_interested_project($dbconn) {
+	$third_query = "SELECT COUNT(DISTINCT T1.DONOR) FROM PROJECT P1, TRANSACTION T1 WHERE P1.ID=T1.PROJECT_ID GROUP BY T1.PROJECT_ID";
+	$second_query = "SELECT T.PROJECT_ID FROM PROJECT P, TRANSACTION T WHERE P.ID=T.PROJECT_ID GROUP BY T.PROJECT_ID HAVING COUNT(DISTINCT T.DONOR) >= ANY(" . $third_query . ")";
+	$query = "SELECT * FROM PROJECT WHERE ID IN (" . $second_query . ")";
+	$result = pg_query($dbconn, $query);
+	return get_first_project_from_raw_data($result);
+}
+
+function get_newest_project($dbconn) {
+	$query = "SELECT * FROM PROJECT WHERE CREATED_TIME <= ANY(SELECT CREATED_TIME FROM PROJECT)";
+	$result = pg_query($dbconn, $query);
+	return get_first_project_from_raw_data($result);
 }
 
 function list_projects($dbconn, $args) {
@@ -105,14 +139,7 @@ function list_projects($dbconn, $args) {
 
 	// Query here
 	$result = pg_query_params($dbconn, $query, $query_params);
-	$ans = array();
-
-	while ($row = pg_fetch_row($result)) {
-		$project = get_project_from_raw_data($row);
-		array_push($ans, $project);
-	}
-
-	return $ans;
+	return get_project_list_from_raw_data($result);
 }
 
 function delete_project_by_id($dbconn, $projectid) {
