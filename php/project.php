@@ -12,6 +12,7 @@ function create_project_table($dbconn) {
 	$query .= "FUNDED_AMOUNT INTEGER DEFAULT 0,";
 	$query .= "TARGET_AMOUNT INTEGER NOT NULL,";
 	$query .= "CREATED_TIME DATE NOT NULL DEFAULT clock_timestamp(),";
+	$query .= "TARGET_DATE DATE NOT NULL,";
 	$query .= "PRIMARY KEY(ID));";
 
 	return pg_query($dbconn, $query);
@@ -29,6 +30,7 @@ function get_project_from_raw_data($data) {
 		'funded_amount' => $data[6],
 		'target_amount' => $data[7],
 		'created_time' => $data[8],
+		'target_date' => $data[9]
 	);
 }
 
@@ -37,7 +39,23 @@ function get_project_by_id($dbconn, $projectid) {
 	if (!$result || (pg_num_rows($result) == 0)) return null;
 
 	$row = pg_fetch_row($result);
-	return get_project_from_raw_data($row);
+	$project = get_project_from_raw_data($row);
+
+	// Add donor count
+	$result = pg_query_params($dbconn, "SELECT COUNT(DISTINCT T.DONOR) FROM TRANSACTION T WHERE T.PROJECT_ID=$1", array($projectid));
+	$row = pg_fetch_row($result);
+	$donor_count = $row[0];
+	$project['donor_count'] = $donor_count;
+
+	// Add remaining date
+	$today = date('Y-m-d');
+	$project['days_to_go'] = max(date_difference($today, $project['target_date']), 0);
+
+	// Add elapsed days
+	$today = date('Y-m-d');
+	$project['elapsed_days'] = date_difference($project['created_time'], $today);
+
+	return $project;
 }
 
 function list_projects($dbconn, $args) {
@@ -108,10 +126,12 @@ function create_project($dbconn, $data) {
 	$images = get($data, 'images');
 	$target_amount = get($data, 'target_amount');
 	$category = get($data, 'category');
+	$target_date = get($data, 'target_date');
+	$created_time = date('Y-m-d');
 
 	$result = pg_query_params($dbconn, 
-		"INSERT INTO PROJECT(TITLE, OWNER, DESCRIPTION, IMAGES, TARGET_AMOUNT, CATEGORY) VALUES($1, $2, $3, $4, $5, $6)",
-		array($title, $owner, $description, $images, $target_amount, $category));
+		"INSERT INTO PROJECT(TITLE, OWNER, DESCRIPTION, IMAGES, TARGET_AMOUNT, CATEGORY, TARGET_DATE, CREATED_TIME) VALUES($1, $2, $3, $4, $5, $6, $7, $8)",
+		array($title, $owner, $description, $images, $target_amount, $category, $target_date, $created_time));
 
 	if (!$result) return error_response('ERROR_OCCURRED');
 	return success_response();

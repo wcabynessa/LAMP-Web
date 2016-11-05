@@ -12,6 +12,7 @@ function updateProject(query) {
 	var target_amount = $('#target-amount').val();
 	var category = $('#category').val();
 	var projectId = $('#project-id').val();
+	var targetDate = $('#target-date').val();
 
 	$.ajax({
 		url: '/php/project_query_handler.php',
@@ -24,7 +25,8 @@ function updateProject(query) {
 			description: description,
 			target_amount: target_amount,
 			images: JSON.stringify(imageList),
-			category: category
+			category: category,
+			target_date: targetDate
 		}
 	}).done(function (data) {
 		window.location.href = '/frontend/list_project.php';
@@ -128,10 +130,15 @@ function viewProjectById(projectId) {
 	}).done(function (data) {
 		var project = preprocessProjectData(JSON.parse(data));
 
+		// Number of donors
+		$(".project-view-days .text").html(project.days_to_go + ' <span>day(s) to go</span>');
+		$(".project-view-people .text").html(project.donor_count + ' <span>donor(s)</span>');
+		$(".project-view-days-to-go .text").html(project.day_to_go + ' <span>days to go</span>');
+
 		// Money and progress
 		$(".project-view-money").text('$' + project.funded_amount);
 		$(".project-view-percentage").text(project.progress + '%');
-		$(".project-view-total-money").text('of $' + project.target_amount);
+		$(".project-view-total-money").html('funded of $' + project.target_amount);
 
 
 		// Progress bar
@@ -189,6 +196,7 @@ function InitEditProject(projectId) {
 		$('#target-amount').val(project.target_amount);
 		$('#category').val(project.category);
 		$('#project-id').val(project.id);
+		$('#target-date').val(project.target_date);
 
 		// Initialize image list
 		imageList = project.images;
