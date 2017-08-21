@@ -1,3 +1,5 @@
+### Simple website using LAMP stack.
+
 For Linux users:  
     - To connect to Postgresql from terminal:  
 		`sudo psql -U [username] -h localhost -p 5432 --dbname=[dbname]`
